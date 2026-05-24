@@ -1,0 +1,75 @@
+/**
+ * Matha Tayk Tours — intentional light luxury editorial system
+ * Charcoal hierarchy · zinc body · gold accents only at micro scale
+ */
+
+@theme inline {
+  /* Surfaces — layered whites for atmospheric depth */
+  --color-brand-white: #ffffff;
+  --color-brand-warm: #faf9f7;
+  --color-brand-linen: #faf8f5;
+  --color-brand-pearl: #f8f6f2;
+  --color-brand-ivory: #f5f1eb;
+
+  /* Typography */
+  --color-brand-charcoal: #18181b;
+  --color-brand-body: #52525b;
+  --color-brand-ink: #18181b;
+  --color-brand-muted: #52525b;
+
+  /* Accent — labels, buttons, dividers only */
+  --color-brand-gold: #c8a96b;
+  --color-brand-gold-mid: #b8985a;
+  --color-brand-gold-soft: #e8dcc4;
+
+  /* Legacy */
+  --color-brand-night: #18181b;
+  --color-brand-cream: #faf9f7;
+
+  /* Semantic */
+  --color-background: var(--color-brand-warm);
+  --color-foreground: var(--color-brand-charcoal);
+  --color-muted-foreground: var(--color-brand-body);
+  --color-border: rgb(24 24 27 / 0.08);
+  --color-ring: var(--color-brand-gold);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+  --radius-3xl: 1.5rem;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Editorial rhythm — calm luxury pacing */
+  --spacing-section-y: clamp(5.75rem, 11.5vw, 10.5rem);
+  --spacing-section-y-lg: clamp(6.5rem, 13vw, 11.5rem);
+
+  /* Homepage — luxury editorial rhythm (py-12 → py-24) */
+  --spacing-home-section-y: clamp(3rem, 4.5vw, 6rem);
+  --spacing-home-gap: clamp(2.75rem, 4.25vw, 5rem);
+  --spacing-home-header: clamp(1.25rem, 2vw, 1.625rem);
+  --spacing-home-block: clamp(1.75rem, 2.5vw, 2.25rem);
+  --spacing-home-card-gap: clamp(1.25rem, 1.75vw, 1.75rem);
+  --spacing-home-prose: clamp(0.875rem, 1.25vw, 1rem);
+
+  /* Collection pages — tighter editorial flow (48px–110px between sections) */
+  --spacing-collection-gap: clamp(3rem, 6.5vw, 6.875rem);
+  --spacing-collection-header: clamp(1.25rem, 2vw, 1.625rem);
+  --spacing-collection-prose: clamp(0.875rem, 1.5vw, 1.125rem);
+  --spacing-collection-block: clamp(2rem, 3.25vw, 2.75rem);
+  --spacing-collection-card-gap: clamp(1.125rem, 1.75vw, 1.5rem);
+  --spacing-collection-cta: clamp(2rem, 3vw, 2.5rem);
+
+  /* Atmospheric depth */
+  --shadow-subtle: 0 4px 24px rgb(24 24 27 / 0.035);
+  --shadow-card: 0 10px 40px -8px rgb(24 24 27 / 0.06), 0 2px 10px rgb(24 24 27 / 0.025);
+  --shadow-elevated: 0 28px 90px -20px rgb(24 24 27 / 0.11), 0 12px 32px -14px rgb(24 24 27 / 0.05);
+  --shadow-nav: 0 16px 56px -14px rgb(24 24 27 / 0.09), 0 4px 20px -6px rgb(24 24 27 / 0.04);
+  --shadow-glow-warm: 0 24px 80px -24px rgb(200 169 107 / 0.18);
+  --shadow-exhibition: 0 32px 100px -28px rgb(14 12 10 / 0.35), 0 8px 24px -8px rgb(14 12 10 / 0.15);
+}

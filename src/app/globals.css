@@ -1,26 +1,1334 @@
 @import "tailwindcss";
+@import "../styles/theme.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+@theme inline {
+  --animate-accordion-down: accordion-down 0.22s ease-out;
+  --animate-accordion-up: accordion-up 0.18s ease-out;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    @apply bg-brand-warm font-sans text-brand-body antialiased;
+  }
+
+  ::selection {
+    @apply bg-brand-gold/20 text-brand-charcoal;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-gold;
+  }
+}
+
+@utility container-prose {
+  max-width: 58ch;
+}
+
+@utility prose-editorial {
+  max-width: 42rem;
+}
+
+@utility section-y {
+  padding-block: var(--spacing-section-y);
+}
+
+@utility section-y-lg {
+  padding-block: var(--spacing-section-y-lg);
+}
+
+/* Homepage — unified editorial rhythm */
+@utility home-section-y {
+  padding-block: var(--spacing-home-section-y);
+}
+
+@utility home-editorial-flow {
+  & > section {
+    padding-block: 0;
+  }
+
+  & > section + section {
+    padding-top: var(--spacing-home-gap);
+  }
+
+  & > section:last-child {
+    padding-bottom: var(--spacing-home-gap);
+  }
+}
+
+@utility home-heading {
+  margin-top: var(--spacing-home-header);
+}
+
+@utility home-block-gap {
+  margin-top: var(--spacing-home-block);
+}
+
+@utility home-card-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-home-card-gap);
+}
+
+@utility home-prose-gap {
+  margin-top: var(--spacing-home-prose);
+}
+
+/* Collection pages — unified editorial rhythm */
+@utility collection-editorial-flow {
+  & > section {
+    padding-block: 0;
+  }
+
+  & > section + section {
+    padding-top: var(--spacing-collection-gap);
+  }
+
+  & > section:last-child {
+    padding-bottom: var(--spacing-collection-gap);
+  }
+}
+
+@utility collection-heading {
+  margin-top: var(--spacing-collection-header);
+}
+
+@utility collection-prose-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-collection-prose);
+  margin-top: var(--spacing-collection-block);
+}
+
+@utility collection-block-gap {
+  margin-top: var(--spacing-collection-block);
+}
+
+@utility collection-card-grid {
+  display: grid;
+  gap: var(--spacing-collection-card-gap);
+}
+
+@utility featured-departure-intro {
+  width: 100%;
+  max-width: 100%;
+}
+
+@utility gutter-x {
+  @apply px-4 sm:px-6 lg:px-8 2xl:px-12;
+}
+
+/* —— Editorial typography —— */
+@utility eyebrow {
+  @apply text-[11px] font-semibold uppercase tracking-[0.32em] text-brand-gold;
+}
+
+@utility heading-display {
+  @apply font-serif font-medium tracking-[-0.025em] text-brand-charcoal;
+}
+
+@utility heading-section {
+  @apply font-serif text-3xl font-medium leading-[1.14] tracking-[-0.025em] text-brand-charcoal sm:text-4xl sm:leading-[1.12] lg:text-[2.85rem] lg:leading-[1.1];
+}
+
+@utility heading-card {
+  @apply font-serif text-xl font-medium leading-[1.3] tracking-[-0.015em] text-brand-charcoal sm:text-2xl;
+}
+
+@utility body-lead {
+  @apply text-base leading-[1.75] text-brand-body sm:text-[1.0625rem] sm:leading-[1.78];
+}
+
+@utility body-copy {
+  @apply text-sm leading-[1.72] text-brand-body sm:text-[15px] sm:leading-[1.72];
+}
+
+@utility label-meta {
+  @apply text-[10px] font-semibold uppercase tracking-[0.28em] text-brand-gold;
+}
+
+@keyframes hero-ken-gentle {
+  0% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1.018) translate3d(0.12%, -0.08%, 0);
+  }
+}
+
+@layer utilities {
+  /**
+   * Homepage hero — anchor sacred architecture on the right;
+   * frame scale-back reduces aggressive object-cover crop.
+   */
+  .hero-image-frame {
+    transform: scale(0.98);
+    transform-origin: 90% 44%;
+  }
+
+  @media (width >= 480px) {
+    .hero-image-frame {
+      transform: scale(0.985);
+      transform-origin: 86% 44%;
+    }
+  }
+
+  @media (width >= 768px) {
+    .hero-image-frame {
+      transform: scale(0.97);
+      transform-origin: 78% 45%;
+    }
+  }
+
+  @media (width >= 1024px) {
+    .hero-image-frame {
+      transform: scale(0.94);
+      transform-origin: 90% 46%;
+    }
+  }
+
+  @media (width >= 1280px) {
+    .hero-image-frame {
+      transform: scale(0.92);
+      transform-origin: 92% 46%;
+    }
+  }
+
+  .hero-image-focal {
+    object-position: 90% 42%;
+  }
+
+  @media (width >= 480px) {
+    .hero-image-focal {
+      object-position: 86% 43%;
+    }
+  }
+
+  @media (width >= 768px) {
+    .hero-image-focal {
+      object-position: 74% 44%;
+    }
+  }
+
+  @media (width >= 1024px) {
+    .hero-image-focal {
+      object-position: 88% 45%;
+    }
+  }
+
+  @media (width >= 1280px) {
+    .hero-image-focal {
+      object-position: 90% 46%;
+    }
+  }
+
+  .hero-ken-gentle {
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+    transform-origin: 90% 45%;
+  }
+
+  @media (width >= 768px) and (width < 1024px) {
+    .hero-ken-gentle {
+      transform-origin: 78% 45%;
+    }
+  }
+
+  @media (width >= 1024px) {
+    .hero-ken-gentle {
+      transform-origin: 92% 46%;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-ken-gentle {
+      animation: hero-ken-gentle 42s ease-in-out infinite alternate;
+    }
+  }
+
+  /**
+   * Cinematic light hero — layered ivory veils, text focus, edge vignette
+   */
+  .hero-atmosphere-base {
+    background-image:
+      radial-gradient(
+        85% 70% at 12% 55%,
+        rgb(255 255 255 / 0.97) 0%,
+        rgb(255 255 255 / 0.82) 32%,
+        rgb(255 255 255 / 0.28) 58%,
+        transparent 78%
+      ),
+      linear-gradient(
+        90deg,
+        rgb(255 255 255 / 0.94) 0%,
+        rgb(255 255 255 / 0.72) 38%,
+        rgb(255 255 255 / 0.14) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgb(250 248 245 / 0.88) 0%,
+        rgb(255 255 255 / 0.35) 28%,
+        rgb(255 255 255 / 0.04) 55%,
+        transparent 68%
+      ),
+      linear-gradient(
+        0deg,
+        rgb(245 241 235 / 0.55) 0%,
+        rgb(255 255 255 / 0.12) 38%,
+        transparent 56%
+      );
+  }
+
+  .hero-vignette {
+    background: radial-gradient(
+      ellipse 92% 88% at 50% 50%,
+      transparent 42%,
+      rgb(24 24 27 / 0.06) 100%
+    );
+  }
+
+  /** Premium signature navigation */
+  .glass-nav {
+    background: rgb(255 255 255 / 0.78);
+    backdrop-filter: blur(24px) saturate(200%);
+    -webkit-backdrop-filter: blur(24px) saturate(200%);
+    border: 1px solid rgb(255 255 255 / 0.65);
+    box-shadow:
+      var(--shadow-nav),
+      0 0 0 1px rgb(200 169 107 / 0.07),
+      inset 0 1px 0 rgb(255 255 255 / 0.92);
+  }
+
+  .glass-nav-rest {
+    background: rgb(255 255 255 / 0.42);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgb(255 255 255 / 0.35);
+    box-shadow: 0 8px 32px -12px rgb(24 24 27 / 0.05);
+  }
+
+  /** Navbar brand block — prevent title/tagline collision */
+  .nav-brand-logo {
+    opacity: 0.96;
+    transition:
+      opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .nav-brand:hover .nav-brand-logo {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+
+  .nav-brand-title {
+    line-height: 1.28;
+    letter-spacing: 0.07em;
+  }
+
+  .nav-brand-tagline {
+    line-height: 1.55;
+    letter-spacing: 0.26em;
+    max-width: 14rem;
+  }
+
+  @media (width >= 640px) {
+    .nav-brand-tagline {
+      max-width: none;
+      white-space: nowrap;
+    }
+  }
+
+  /** Editorial elevated surface */
+  .editorial-card {
+    background: rgb(255 255 255 / 0.94);
+    border: 1px solid rgb(24 24 27 / 0.05);
+    box-shadow: var(--shadow-card);
+    transition:
+      transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .editorial-card:hover {
+    box-shadow: var(--shadow-elevated);
+    transform: translateY(-5px);
+  }
+
+  /** Testimonial feature card */
+  .testimonial-card {
+    background: rgb(255 255 255 / 0.98);
+    border: 1px solid rgb(24 24 27 / 0.06);
+    box-shadow:
+      var(--shadow-elevated),
+      var(--shadow-glow-warm);
+  }
+
+  .testimonial-card-muted {
+    background: rgb(255 255 255 / 0.62);
+    border: 1px solid rgb(24 24 27 / 0.04);
+    box-shadow: var(--shadow-subtle);
+  }
+
+  /** Static editorial surface — no lift on hover */
+  .editorial-card-static {
+    background: rgb(255 255 255 / 0.94);
+    border: 1px solid rgb(24 24 27 / 0.05);
+    box-shadow: var(--shadow-card);
+  }
+
+  /** Exhibition photography — warm, cinematic, bottom-weighted */
+  .image-scrim-exhibition {
+    background: linear-gradient(
+      to top,
+      rgb(12 10 8 / 0.82) 0%,
+      rgb(12 10 8 / 0.42) 32%,
+      rgb(12 10 8 / 0.08) 58%,
+      transparent 78%
+    );
+  }
+
+  .image-scrim-exhibition-hover {
+    opacity: 0.92;
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .group\/tile:hover .image-scrim-exhibition-hover {
+    opacity: 1;
+  }
+
+  .image-scrim-soft {
+    background: linear-gradient(
+      to top,
+      rgb(12 10 8 / 0.55) 0%,
+      rgb(12 10 8 / 0.1) 48%,
+      transparent 100%
+    );
+  }
+
+  /** Autumn departures — cinematic golden-hour editorial hero */
+  .autumn-departures-gradient {
+    background: linear-gradient(
+      90deg,
+      rgb(12 12 12 / 0.52) 0%,
+      rgb(12 12 12 / 0.34) 35%,
+      rgb(12 12 12 / 0.18) 60%,
+      rgb(12 12 12 / 0.08) 100%
+    );
+  }
+
+  .autumn-departures-warmth {
+    background: linear-gradient(
+      125deg,
+      rgb(200 150 80 / 0.12) 0%,
+      rgb(255 200 140 / 0.06) 28%,
+      transparent 55%
+    );
+    mix-blend-mode: soft-light;
+  }
+
+  .autumn-departures-depth {
+    background: linear-gradient(
+      0deg,
+      rgb(12 10 8 / 0.42) 0%,
+      rgb(12 10 8 / 0.12) 38%,
+      transparent 62%
+    );
+  }
+
+  .autumn-departures-haze {
+    background: radial-gradient(
+      70% 80% at 12% 45%,
+      rgb(255 240 220 / 0.08) 0%,
+      transparent 65%
+    );
+    backdrop-filter: blur(0.5px);
+  }
+
+  .autumn-departures-vignette {
+    background: radial-gradient(
+      ellipse 115% 95% at 50% 50%,
+      transparent 42%,
+      rgb(12 10 8 / 0.38) 100%
+    );
+  }
+
+  .autumn-departures-cta {
+    box-shadow:
+      0 1px 0 rgb(255 255 255 / 0.12) inset,
+      0 14px 44px -10px rgb(200 169 107 / 0.55),
+      0 24px 56px -20px rgb(12 10 8 / 0.45);
+    transition:
+      box-shadow 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .autumn-departures-cta:hover {
+    box-shadow:
+      0 1px 0 rgb(255 255 255 / 0.16) inset,
+      0 18px 52px -8px rgb(200 169 107 / 0.62),
+      0 28px 64px -18px rgb(12 10 8 / 0.5);
+    transform: translateY(-2px);
+  }
+
+  /** Section tonal transitions */
+  .section-fade-top {
+    background: linear-gradient(
+      to bottom,
+      rgb(248 246 242 / 0.6) 0%,
+      transparent 100%
+    );
+  }
+
+  .section-fade-bottom {
+    background: linear-gradient(
+      to top,
+      rgb(245 241 235 / 0.35) 0%,
+      transparent 100%
+    );
+  }
+
+  /** Decorative editorial quote mark */
+  .quote-mark {
+    font-family: var(--font-serif);
+    line-height: 1;
+    color: rgb(200 169 107 / 0.22);
+    user-select: none;
+    pointer-events: none;
+  }
+
+  /** Footer premium surface */
+  .footer-surface {
+    background: linear-gradient(
+      180deg,
+      rgb(248 246 242) 0%,
+      rgb(245 241 235) 100%
+    );
+  }
+
+  /** Nankana Sahib — cinematic editorial destination panel */
+  .destination-nankana-card {
+    box-shadow: 0 24px 80px rgb(15 23 42 / 0.12);
+    transition:
+      transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .destination-nankana-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 32px 96px rgb(15 23 42 / 0.16);
+  }
+
+  .destination-nankana-media {
+    height: 100% !important;
+    width: 100% !important;
+    min-height: 100%;
+    min-width: 100%;
+    transform: scale(1.2);
+    transform-origin: 55% 48%;
+    transition:
+      transform 1.15s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 1.15s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: brightness(1.01) saturate(1.05) contrast(1.05) sepia(0.06);
+  }
+
+  .group\/nankana:hover .destination-nankana-media {
+    transform: scale(1.23);
+    filter: brightness(1.04) saturate(1.07) contrast(1.06) sepia(0.04);
+  }
+
+  .destination-nankana-overlay {
+    background-image: linear-gradient(
+      180deg,
+      rgb(255 255 255 / 0.02) 0%,
+      rgb(0 0 0 / 0.12) 45%,
+      rgb(0 0 0 / 0.58) 100%
+    );
+  }
+
+  .destination-nankana-vignette {
+    background: radial-gradient(
+      ellipse 96% 94% at 52% 44%,
+      transparent 46%,
+      rgb(14 12 10 / 0.26) 100%
+    );
+  }
+
+  .destination-nankana-left-veil {
+    background: linear-gradient(
+      90deg,
+      rgb(248 246 242 / 0.5) 0%,
+      rgb(248 246 242 / 0.15) 12%,
+      transparent 30%
+    );
+  }
+
+  .destination-nankana-warmth {
+    background: linear-gradient(
+      125deg,
+      rgb(232 220 196 / 0.1) 0%,
+      rgb(200 169 107 / 0.05) 35%,
+      transparent 62%
+    );
+    mix-blend-mode: soft-light;
+  }
+
+  .destination-nankana-sky-soften {
+    background: linear-gradient(
+      180deg,
+      rgb(248 246 242 / 0.2) 0%,
+      transparent 18%
+    );
+  }
+
+  .destination-nankana-depth {
+    background: linear-gradient(
+      0deg,
+      rgb(0 0 0 / 0.22) 0%,
+      rgb(0 0 0 / 0.08) 38%,
+      transparent 58%
+    );
+  }
+
+  /** Signature departures — editorial journey panels */
+  .journey-editorial-panel {
+    box-shadow: 0 24px 80px rgb(15 23 42 / 0.08);
+    transition:
+      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .group\/journey:hover .journey-editorial-panel {
+    transform: translateY(-4px);
+    box-shadow: 0 32px 100px rgb(15 23 42 / 0.11);
+  }
+
+  .journey-editorial-media {
+    transition:
+      transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: brightness(1.02) saturate(1.04) contrast(1.03) sepia(0.05);
+  }
+
+  .group\/journey:hover .journey-editorial-media {
+    transform: scale(1.04);
+    filter: brightness(1.05) saturate(1.06) contrast(1.04) sepia(0.04);
+  }
+
+  .journey-editorial-overlay {
+    background-image: linear-gradient(
+      180deg,
+      rgb(255 255 255 / 0.02) 0%,
+      rgb(0 0 0 / 0.08) 40%,
+      rgb(0 0 0 / 0.38) 100%
+    );
+  }
+
+  .journey-editorial-warmth {
+    background: linear-gradient(
+      135deg,
+      rgb(232 220 196 / 0.1) 0%,
+      transparent 50%
+    );
+    mix-blend-mode: soft-light;
+  }
+
+  .journey-editorial-vignette {
+    background: radial-gradient(
+      ellipse 95% 90% at 50% 45%,
+      transparent 52%,
+      rgb(14 12 10 / 0.12) 100%
+    );
+  }
+
+  .journey-editorial-link-line {
+    transform-origin: left;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .group\/btn:hover .journey-editorial-link-line {
+    transform: scaleX(1);
+  }
+
+  /** Kartarpur Sahib — twilight cinematic destination panel */
+  .destination-kartarpur-card {
+    box-shadow: 0 24px 80px rgb(15 23 42 / 0.12);
+    transition:
+      transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .destination-kartarpur-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 32px 96px rgb(15 23 42 / 0.16);
+  }
+
+  .destination-kartarpur-media {
+    transition:
+      transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: brightness(1.02) saturate(1.06) contrast(1.04);
+  }
+
+  .group\/kartarpur:hover .destination-kartarpur-media {
+    transform: scale(1.045);
+    filter: brightness(1.06) saturate(1.08) contrast(1.05);
+  }
+
+  .destination-kartarpur-overlay {
+    background-image: linear-gradient(
+      180deg,
+      rgb(255 255 255 / 0.02) 0%,
+      rgb(255 255 255 / 0.02) 20%,
+      rgb(0 0 0 / 0.18) 55%,
+      rgb(0 0 0 / 0.58) 100%
+    );
+  }
+
+  .destination-kartarpur-vignette {
+    background: radial-gradient(
+      ellipse 94% 90% at 50% 38%,
+      transparent 50%,
+      rgb(14 12 10 / 0.28) 100%
+    );
+  }
+
+  .destination-kartarpur-twilight-glow {
+    background: linear-gradient(
+      160deg,
+      rgb(200 169 107 / 0.08) 0%,
+      rgb(120 80 140 / 0.04) 40%,
+      transparent 65%
+    );
+    mix-blend-mode: soft-light;
+  }
+
+  .destination-kartarpur-reflection {
+    background: linear-gradient(
+      0deg,
+      rgb(200 169 107 / 0.06) 0%,
+      transparent 35%
+    );
+  }
+
+  /** Lahore — golden-hour cinematic destination panel */
+  .destination-lahore-card {
+    box-shadow: 0 24px 80px rgb(15 23 42 / 0.12);
+    transition:
+      transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .destination-lahore-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 32px 96px rgb(15 23 42 / 0.16);
+  }
+
+  .destination-lahore-media {
+    transition:
+      transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: brightness(1.02) saturate(1.05) contrast(1.03);
+  }
+
+  .group\/lahore:hover .destination-lahore-media {
+    transform: scale(1.04);
+    filter: brightness(1.05) saturate(1.08) contrast(1.04);
+  }
+
+  .destination-lahore-overlay {
+    background-image: linear-gradient(
+      180deg,
+      rgb(255 255 255 / 0.02) 0%,
+      rgb(255 255 255 / 0.02) 18%,
+      rgb(0 0 0 / 0.16) 50%,
+      rgb(0 0 0 / 0.6) 100%
+    );
+  }
+
+  .destination-lahore-vignette {
+    background: radial-gradient(
+      ellipse 96% 92% at 50% 40%,
+      transparent 48%,
+      rgb(14 12 10 / 0.24) 100%
+    );
+  }
+
+  .destination-lahore-sunset-glow {
+    background: linear-gradient(
+      145deg,
+      rgb(255 180 100 / 0.1) 0%,
+      rgb(200 120 80 / 0.06) 30%,
+      rgb(180 100 140 / 0.04) 55%,
+      transparent 72%
+    );
+    mix-blend-mode: soft-light;
+  }
+
+  .destination-lahore-sandstone {
+    background: linear-gradient(
+      0deg,
+      rgb(180 90 50 / 0.08) 0%,
+      rgb(200 169 107 / 0.04) 28%,
+      transparent 55%
+    );
+  }
+
+  .destination-lahore-haze {
+    background: linear-gradient(
+      180deg,
+      rgb(255 220 180 / 0.06) 0%,
+      transparent 30%
+    );
+  }
+
+  /** Hasan Abdal — golden-hour landscape sanctuary panel */
+  .destination-hasan-card {
+    box-shadow: 0 24px 80px rgb(15 23 42 / 0.12);
+    transition:
+      transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .destination-hasan-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 32px 96px rgb(15 23 42 / 0.16);
+  }
+
+  .destination-hasan-media {
+    transition:
+      transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: brightness(1.02) saturate(1.04) contrast(1.03);
+  }
+
+  .group\/hasan:hover .destination-hasan-media {
+    transform: scale(1.04);
+    filter: brightness(1.05) saturate(1.06) contrast(1.04);
+  }
+
+  .destination-hasan-overlay {
+    background-image: linear-gradient(
+      180deg,
+      rgb(255 255 255 / 0.02) 0%,
+      rgb(255 255 255 / 0.02) 18%,
+      rgb(0 0 0 / 0.16) 50%,
+      rgb(0 0 0 / 0.58) 100%
+    );
+  }
+
+  .destination-hasan-vignette {
+    background: radial-gradient(
+      ellipse 95% 92% at 50% 42%,
+      transparent 50%,
+      rgb(14 12 10 / 0.22) 100%
+    );
+  }
+
+  .destination-hasan-sunset {
+    background: linear-gradient(
+      115deg,
+      rgb(255 190 110 / 0.12) 0%,
+      rgb(220 150 90 / 0.06) 28%,
+      transparent 55%
+    );
+    mix-blend-mode: soft-light;
+  }
+
+  .destination-hasan-water {
+    background: linear-gradient(
+      0deg,
+      rgb(200 169 107 / 0.07) 0%,
+      rgb(180 140 100 / 0.04) 22%,
+      transparent 45%
+    );
+  }
+
+  .destination-hasan-ivory {
+    background: linear-gradient(
+      250deg,
+      rgb(255 252 245 / 0.08) 0%,
+      transparent 40%
+    );
+    mix-blend-mode: soft-light;
+  }
+
+  .destination-hasan-mountain-haze {
+    background: linear-gradient(
+      180deg,
+      rgb(200 180 160 / 0.05) 0%,
+      transparent 25%
+    );
+  }
+
+  /** Eminabad — golden-hour heritage entrance panel */
+  .destination-eminabad-card {
+    box-shadow: 0 24px 80px rgb(15 23 42 / 0.1);
+    transition:
+      transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .destination-eminabad-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 32px 96px rgb(15 23 42 / 0.14);
+  }
+
+  .destination-eminabad-media {
+    height: 100% !important;
+    width: 100% !important;
+    min-height: 100%;
+    min-width: 100%;
+    transform: scale(1.18);
+    transform-origin: 48% 42%;
+    transition:
+      transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: brightness(1.02) saturate(1.04) contrast(1.02);
+  }
+
+  .group\/eminabad:hover .destination-eminabad-media {
+    transform: scale(1.21);
+    filter: brightness(1.05) saturate(1.05) contrast(1.03);
+  }
+
+  .destination-eminabad-depth {
+    background: linear-gradient(
+      0deg,
+      rgb(0 0 0 / 0.2) 0%,
+      rgb(0 0 0 / 0.07) 38%,
+      transparent 58%
+    );
+  }
+
+  .destination-eminabad-overlay {
+    background-image: linear-gradient(
+      180deg,
+      rgb(255 255 255 / 0.02) 0%,
+      rgb(255 255 255 / 0.02) 18%,
+      rgb(0 0 0 / 0.14) 50%,
+      rgb(0 0 0 / 0.56) 100%
+    );
+  }
+
+  .destination-eminabad-vignette {
+    background: radial-gradient(
+      ellipse 95% 92% at 50% 42%,
+      transparent 50%,
+      rgb(14 12 10 / 0.2) 100%
+    );
+  }
+
+  .destination-eminabad-sunset {
+    background: linear-gradient(
+      105deg,
+      rgb(255 195 120 / 0.11) 0%,
+      rgb(230 170 100 / 0.05) 32%,
+      transparent 58%
+    );
+    mix-blend-mode: soft-light;
+  }
+
+  .destination-eminabad-ivory {
+    background: linear-gradient(
+      255deg,
+      rgb(255 252 248 / 0.1) 0%,
+      transparent 42%
+    );
+    mix-blend-mode: soft-light;
+  }
+
+  .destination-eminabad-pathway {
+    background: linear-gradient(
+      0deg,
+      rgb(200 169 107 / 0.06) 0%,
+      rgb(255 230 190 / 0.03) 25%,
+      transparent 48%
+    );
+  }
+
+  .destination-eminabad-haze {
+    background: linear-gradient(
+      180deg,
+      rgb(255 225 190 / 0.05) 0%,
+      transparent 28%
+    );
+  }
+
+  /* —— Destination detail pages —— */
+  .destination-page-hero-veil {
+    background: linear-gradient(
+      180deg,
+      rgb(0 0 0 / 0.12) 0%,
+      rgb(0 0 0 / 0.22) 45%,
+      rgb(0 0 0 / 0.62) 100%
+    );
+  }
+
+  .destination-page-hero-vignette {
+    background: radial-gradient(
+      ellipse 120% 100% at 50% 100%,
+      transparent 35%,
+      rgb(10 10 12 / 0.45) 100%
+    );
+  }
+
+  .destination-page-image-overlay {
+    background: linear-gradient(
+      180deg,
+      transparent 40%,
+      rgb(0 0 0 / 0.08) 100%
+    );
+  }
+
+  .destination-page-image-vignette {
+    background: radial-gradient(
+      ellipse 90% 85% at 50% 50%,
+      transparent 55%,
+      rgb(14 12 10 / 0.12) 100%
+    );
+  }
+
+  .destination-page-cta-overlay {
+    background: linear-gradient(
+      180deg,
+      rgb(24 24 27 / 0.72) 0%,
+      rgb(24 24 27 / 0.88) 100%
+    );
+  }
+
+  .destination-panel-link {
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .destination-panel-link:active {
+    transform: scale(0.995);
+  }
+
+  .destination-back-link:focus-visible {
+    @apply outline-2 outline-offset-4 outline-brand-gold;
+  }
+
+  .destination-cinematic-panel {
+    box-shadow:
+      0 1px 0 rgb(24 24 27 / 0.04),
+      0 24px 48px -24px rgb(24 24 27 / 0.12);
+  }
+
+  /* —— Collection atmospheres —— */
+  .collection-panel-overlay {
+    background: linear-gradient(
+      180deg,
+      rgb(12 12 12 / 0.04) 0%,
+      rgb(12 12 12 / 0.14) 45%,
+      rgb(12 12 12 / 0.28) 100%
+    );
+  }
+
+  .collection-panel-vignette {
+    background: radial-gradient(
+      ellipse 100% 90% at 50% 100%,
+      transparent 42%,
+      rgb(12 10 8 / 0.2) 100%
+    );
+  }
+
+  .collection-panel-depth {
+    background: linear-gradient(
+      0deg,
+      rgb(12 10 8 / 0.22) 0%,
+      rgb(12 10 8 / 0.06) 42%,
+      transparent 68%
+    );
+  }
+
+  .collection-editorial-readability-left {
+    background: linear-gradient(
+      90deg,
+      rgb(0 0 0 / 0.28) 0%,
+      rgb(0 0 0 / 0.18) 38%,
+      rgb(0 0 0 / 0.08) 62%,
+      transparent 100%
+    );
+  }
+
+  .collection-editorial-readability-right {
+    background: linear-gradient(
+      270deg,
+      rgb(0 0 0 / 0.28) 0%,
+      rgb(0 0 0 / 0.18) 38%,
+      rgb(0 0 0 / 0.08) 62%,
+      transparent 100%
+    );
+  }
+
+  .collection-hero-vignette {
+    background: radial-gradient(
+      ellipse 120% 100% at 50% 100%,
+      transparent 38%,
+      rgb(10 10 12 / 0.5) 100%
+    );
+  }
+
+  .collection-hero-haze {
+    background: linear-gradient(
+      90deg,
+      rgb(12 12 12 / 0.45) 0%,
+      rgb(12 12 12 / 0.2) 45%,
+      transparent 72%
+    );
+  }
+
+  .collection-sikh-hero-gradient {
+    background: linear-gradient(
+        180deg,
+        rgb(24 18 40 / 0.1) 0%,
+        rgb(12 10 20 / 0.24) 50%,
+        rgb(8 8 14 / 0.72) 100%
+      ),
+      linear-gradient(
+        105deg,
+        rgb(255 210 160 / 0.12) 0%,
+        transparent 40%
+      ),
+      linear-gradient(
+        90deg,
+        rgb(8 8 14 / 0.62) 0%,
+        rgb(12 10 20 / 0.38) 34%,
+        rgb(12 12 14 / 0.12) 62%,
+        rgb(12 12 12 / 0.05) 100%
+      );
+  }
+
+  .collection-sikh-hero-warmth {
+    background: radial-gradient(
+      ellipse 88% 68% at 18% 76%,
+      rgb(255 200 150 / 0.11) 0%,
+      transparent 56%
+    );
+  }
+
+  .collection-buddhist-hero-gradient {
+    background: linear-gradient(
+      90deg,
+      rgb(18 16 14 / 0.62) 0%,
+      rgb(24 20 16 / 0.38) 42%,
+      rgb(30 26 20 / 0.2) 68%,
+      rgb(12 12 12 / 0.1) 100%
+    );
+  }
+
+  .collection-uae-hero-gradient {
+    background: linear-gradient(
+      90deg,
+      rgb(8 8 10 / 0.65) 0%,
+      rgb(12 12 14 / 0.4) 38%,
+      rgb(12 12 12 / 0.18) 65%,
+      rgb(12 12 12 / 0.08) 100%
+    );
+  }
+
+  .collection-pakistan-hero-gradient {
+    background: linear-gradient(
+        180deg,
+        rgb(14 16 20 / 0.1) 0%,
+        rgb(10 12 16 / 0.28) 48%,
+        rgb(8 10 14 / 0.74) 100%
+      ),
+      linear-gradient(
+        115deg,
+        rgb(210 150 80 / 0.14) 0%,
+        transparent 42%
+      ),
+      linear-gradient(
+        90deg,
+        rgb(8 10 12 / 0.64) 0%,
+        rgb(10 12 14 / 0.4) 34%,
+        rgb(12 12 14 / 0.14) 60%,
+        rgb(12 12 12 / 0.05) 100%
+      );
+  }
+
+  .collection-pakistan-hero-warmth {
+    background: radial-gradient(
+      ellipse 90% 70% at 18% 72%,
+      rgb(220 160 90 / 0.12) 0%,
+      transparent 58%
+    );
+  }
+
+  .collection-home-sikh {
+    background: linear-gradient(
+        105deg,
+        rgb(255 210 160 / 0.14) 0%,
+        transparent 45%
+      ),
+      linear-gradient(
+        180deg,
+        rgb(20 16 32 / 0.03) 0%,
+        rgb(8 8 12 / 0.28) 100%
+      );
+  }
+
+  .collection-sikh-home-cinematic {
+    background: linear-gradient(
+      to right,
+      rgb(0 0 0 / 0.18) 0%,
+      rgb(0 0 0 / 0.1) 48%,
+      transparent 78%
+    );
+  }
+
+  .collection-sikh-home-text-veil {
+    background: linear-gradient(
+      to right,
+      rgb(0 0 0 / 0.28) 0%,
+      rgb(0 0 0 / 0.14) 44%,
+      transparent 72%
+    );
+  }
+
+  .collection-home-buddhist {
+    background: linear-gradient(
+      180deg,
+      rgb(30 26 22 / 0.04) 0%,
+      transparent 48%
+    ),
+    linear-gradient(
+      0deg,
+      rgb(12 10 8 / 0.2) 0%,
+      transparent 55%
+    );
+  }
+
+  .collection-buddhist-home-cinematic {
+    background: linear-gradient(
+      to left,
+      rgb(0 0 0 / 0.12) 0%,
+      transparent 55%
+    );
+  }
+
+  /** Right-aligned copy — text column legibility without crushing highlights */
+  .collection-buddhist-home-text-veil {
+    background: linear-gradient(
+      to left,
+      rgb(0 0 0 / 0.28) 0%,
+      rgb(0 0 0 / 0.14) 42%,
+      transparent 70%
+    );
+  }
+
+  .collection-home-pakistan {
+    background: linear-gradient(
+        110deg,
+        rgb(220 160 90 / 0.16) 0%,
+        transparent 42%
+      ),
+      linear-gradient(
+        180deg,
+        rgb(12 12 12 / 0.02) 0%,
+        rgb(8 10 12 / 0.28) 100%
+      );
+  }
+
+  .collection-pakistan-home-cinematic {
+    background: linear-gradient(
+      to right,
+      rgb(0 0 0 / 0.18) 0%,
+      rgb(0 0 0 / 0.1) 50%,
+      transparent 78%
+    );
+  }
+
+  .collection-pakistan-home-text-veil {
+    background: linear-gradient(
+      to right,
+      rgb(0 0 0 / 0.28) 0%,
+      rgb(0 0 0 / 0.14) 44%,
+      transparent 72%
+    );
+  }
+
+  .collection-home-uae {
+    background: linear-gradient(
+        180deg,
+        rgb(8 8 10 / 0.02) 0%,
+        transparent 52%
+      ),
+      linear-gradient(
+        0deg,
+        rgb(8 10 18 / 0.22) 0%,
+        transparent 58%
+      );
+  }
+
+  .collection-uae-home-cinematic {
+    background: linear-gradient(
+      to left,
+      rgb(0 0 0 / 0.14) 0%,
+      rgb(0 0 0 / 0.08) 45%,
+      transparent 72%
+    );
+  }
+
+  .collection-uae-home-text-veil {
+    background: linear-gradient(
+      to left,
+      rgb(0 0 0 / 0.28) 0%,
+      rgb(0 0 0 / 0.14) 40%,
+      transparent 68%
+    );
+  }
+
+  .collection-sikh-spread-overlay,
+  .collection-pakistan-spread-overlay {
+    background: linear-gradient(
+      180deg,
+      transparent 50%,
+      rgb(12 10 8 / 0.1) 100%
+    );
+  }
+
+  .collection-buddhist-spread-overlay {
+    background: linear-gradient(
+      180deg,
+      rgb(30 26 22 / 0.08) 0%,
+      rgb(12 10 8 / 0.12) 100%
+    );
+  }
+
+  .collection-uae-spread-overlay {
+    background: linear-gradient(
+      180deg,
+      transparent 45%,
+      rgb(8 8 10 / 0.15) 100%
+    );
+  }
 }
