@@ -78,12 +78,61 @@
   --spacing-collection-card-gap: var(--spacing-editorial-card);
   --spacing-collection-cta: var(--spacing-editorial-cta);
 
-  /* Collection pages — desktop editorial rhythm (lg+, capped for even flow) */
-  --spacing-collection-gap-lg: clamp(3.25rem, 4.25vw, 5.25rem);
-  --spacing-collection-gap-major-lg: clamp(3.75rem, 5vw, 5.75rem);
-  --spacing-collection-gap-panel-lg: clamp(3.25rem, 4vw, 4.75rem);
+  /*
+   * Collection page section flow — between major blocks only (not card internals)
+   * Tier: major · bridge (optical chapter pauses) · panel · epilogue · footer
+   */
+  --spacing-collection-flow-gap: clamp(3rem, 5.5vw, 4.75rem);
+  --spacing-collection-flow-major: clamp(3.5rem, 6.5vw, 5.25rem);
+  --spacing-collection-flow-bridge: clamp(3.35rem, 5.85vw, 5.1rem);
+  --spacing-collection-flow-panel: clamp(3.25rem, 6vw, 5rem);
+  --spacing-collection-flow-experience-spread: clamp(3.75rem, 6.75vw, 5.5rem);
+  --spacing-collection-flow-epilogue: clamp(3.5rem, 6.25vw, 5.35rem);
+  --spacing-collection-flow-footer: clamp(3.75rem, 6.75vw, 5.75rem);
+  --spacing-collection-chapter-gap: clamp(1.375rem, 2.25vw, 2rem);
+
+  /* Collection pages — desktop section rhythm (lg+, cinematic but capped) */
+  --spacing-collection-gap-lg: clamp(4rem, 5vw, 6.5rem);
+  --spacing-collection-gap-major-lg: clamp(4.5rem, 5.75vw, 7rem);
+  --spacing-collection-gap-bridge-lg: clamp(4.35rem, 5.35vw, 6.85rem);
+  --spacing-collection-gap-panel-lg: clamp(4.25rem, 5.25vw, 6.25rem);
+  --spacing-collection-gap-experience-spread-lg: clamp(4.75rem, 5.75vw, 6.75rem);
+  --spacing-collection-gap-epilogue-lg: clamp(4.5rem, 5.6vw, 6.5rem);
   --spacing-collection-block-lg: clamp(2rem, 2.5vw, 2.875rem);
-  --spacing-collection-cta-inset-lg: clamp(3.5rem, 4.25vw, 5rem);
+  --spacing-collection-cta-inset-lg: clamp(4.25rem, 5.25vw, 6.25rem);
+  --spacing-collection-footer-lg: clamp(4.75rem, 5.75vw, 7rem);
+  --spacing-collection-chapter-gap-lg: clamp(1.5rem, 2vw, 2.125rem);
+
+  /*
+   * About page — optical editorial rhythm (page-local, not global)
+   * Tone = alternating surface handoff · Chapter = narrative weight · Pre-CTA = dark band approach
+   */
+  --spacing-about-flow-base: clamp(3.25rem, 6vw, 5.15rem);
+  --spacing-about-flow-major: clamp(3.75rem, 7vw, 5.65rem);
+  --spacing-about-flow-tone: clamp(4rem, 7.5vw, 5.85rem);
+  --spacing-about-flow-chapter: clamp(4rem, 7.25vw, 6rem);
+  --spacing-about-flow-bridge: clamp(3.5rem, 6.25vw, 5.35rem);
+  --spacing-about-flow-pre-cta: clamp(4.25rem, 8vw, 6.5rem);
+  --spacing-about-flow-footer: clamp(4rem, 7vw, 6rem);
+  --spacing-about-inner-y: clamp(2.75rem, 4.5vw, 4rem);
+  --spacing-about-chapter-inner-y: clamp(3rem, 5vw, 4.5rem);
+  --spacing-about-block-gap: clamp(2.125rem, 3.25vw, 3rem);
+  --spacing-about-card-gap: clamp(1.5rem, 2.5vw, 2.25rem);
+  --spacing-about-pillar-gap: clamp(1.25rem, 2vw, 1.625rem);
+  --spacing-about-split-gap: clamp(2.5rem, 4vw, 3.5rem);
+
+  --spacing-about-gap-lg: clamp(4.75rem, 5.75vw, 7.25rem);
+  --spacing-about-major-lg: clamp(5.25rem, 6.5vw, 7.75rem);
+  --spacing-about-tone-lg: clamp(5.25rem, 6.25vw, 7.5rem);
+  --spacing-about-chapter-lg: clamp(5.25rem, 6.5vw, 7.75rem);
+  --spacing-about-bridge-lg: clamp(4.75rem, 5.5vw, 7rem);
+  --spacing-about-pre-cta-lg: clamp(5.5rem, 7vw, 8rem);
+  --spacing-about-footer-lg: clamp(5rem, 6vw, 7.5rem);
+  --spacing-about-inner-y-lg: clamp(3.25rem, 4.5vw, 4.75rem);
+  --spacing-about-chapter-inner-y-lg: clamp(3.5rem, 5vw, 5.25rem);
+  --spacing-about-block-lg: clamp(2.375rem, 3vw, 3.25rem);
+  --spacing-about-card-gap-lg: clamp(1.625rem, 2vw, 2.375rem);
+  --spacing-about-split-gap-lg: clamp(3rem, 4vw, 4.25rem);
 
   /* Atmospheric depth */
   --shadow-subtle: 0 4px 24px rgb(24 24 27 / 0.035);

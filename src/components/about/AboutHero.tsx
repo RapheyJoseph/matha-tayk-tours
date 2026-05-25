@@ -5,31 +5,20 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { useReducedMotionAfterHydration } from "@/hooks/useReducedMotionAfterHydration";
-import type { CollectionPageData } from "@/data/collections";
+import type { aboutPage } from "@/data/about";
 import { cn } from "@/lib/utils";
 
-const atmosphereHeroOverlay: Record<
-  CollectionPageData["atmosphere"],
-  string
-> = {
-  sikh: "collection-sikh-hero-gradient",
-  buddhist: "collection-buddhist-hero-gradient",
-  uae: "collection-uae-hero-gradient",
-  pakistan: "collection-pakistan-hero-gradient",
-};
-
-interface CollectionHeroProps {
-  collection: CollectionPageData;
+interface AboutHeroProps {
+  hero: (typeof aboutPage)["hero"];
 }
 
-export function CollectionHero({ collection }: CollectionHeroProps) {
+export function AboutHero({ hero }: AboutHeroProps) {
   const reduceMotion = useReducedMotionAfterHydration();
-  const { hero, eyebrow, title, atmosphere } = collection;
 
   return (
     <section
-      className="relative flex min-h-[72svh] items-end overflow-hidden bg-brand-charcoal sm:min-h-[82svh] lg:min-h-[92dvh]"
-      aria-label={`${title} collection`}
+      className="relative flex min-h-[72svh] items-end overflow-hidden bg-brand-charcoal sm:min-h-[80svh] lg:min-h-[88dvh]"
+      aria-label="About Matha Tayk Tours"
     >
       <motion.div
         className="absolute inset-0 overflow-hidden"
@@ -44,13 +33,7 @@ export function CollectionHero({ collection }: CollectionHeroProps) {
           priority
           quality={85}
           className={cn(
-            "object-cover brightness-[1.03] saturate-[1.06]",
-            atmosphere === "uae" && "saturate-[1.02] brightness-[1.02]",
-            atmosphere === "buddhist" && "saturate-[0.95] brightness-[0.98]",
-            atmosphere === "pakistan" &&
-              "brightness-[1.02] saturate-[1.08] contrast-[1.04]",
-            atmosphere === "sikh" &&
-              "brightness-[1.02] saturate-[1.05] contrast-[1.03]",
+            "object-cover brightness-[1.02] saturate-[1.05] contrast-[1.03]",
             !reduceMotion && "hero-ken-gentle",
           )}
           style={{ objectPosition: hero.objectPosition }}
@@ -59,24 +42,13 @@ export function CollectionHero({ collection }: CollectionHeroProps) {
       </motion.div>
 
       <div
-        className={cn(
-          "pointer-events-none absolute inset-0 z-[1]",
-          atmosphereHeroOverlay[atmosphere],
-        )}
+        className="collection-sikh-hero-gradient pointer-events-none absolute inset-0 z-[1]"
         aria-hidden
       />
-      {atmosphere === "pakistan" ? (
-        <div
-          className="collection-pakistan-hero-warmth pointer-events-none absolute inset-0 z-[1]"
-          aria-hidden
-        />
-      ) : null}
-      {atmosphere === "sikh" ? (
-        <div
-          className="collection-sikh-hero-warmth pointer-events-none absolute inset-0 z-[1]"
-          aria-hidden
-        />
-      ) : null}
+      <div
+        className="collection-sikh-hero-warmth pointer-events-none absolute inset-0 z-[1]"
+        aria-hidden
+      />
       <div
         className="collection-hero-vignette pointer-events-none absolute inset-0 z-[1]"
         aria-hidden
@@ -90,23 +62,23 @@ export function CollectionHero({ collection }: CollectionHeroProps) {
         aria-hidden
       />
 
-      <div className="relative z-10 mx-auto w-full min-w-0 max-w-[1440px] gutter-x pb-6 pt-[calc(6.5rem+env(safe-area-inset-top,0px))] sm:pb-8 sm:pt-36 lg:pb-10 lg:pt-40">
+      <div className="relative z-10 mx-auto w-full min-w-0 max-w-[1440px] gutter-x pb-6 pt-[calc(6.5rem+env(safe-area-inset-top,0px))] sm:pb-10 sm:pt-36 lg:pb-12 lg:pt-40">
         <Link
-          href="/#collections"
+          href="/"
           className="destination-back-link mb-8 inline-flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.28em] text-white/75 transition-colors duration-500 hover:text-white sm:mb-10"
         >
           <ArrowLeft className="size-3.5" aria-hidden />
-          All journeys
+          Home
         </Link>
 
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="collection-hero-copy w-full min-w-0 max-w-2xl"
+          className="collection-hero-copy w-full min-w-0 max-w-2xl lg:max-w-3xl"
         >
-          <p className="label-meta text-brand-gold-soft">{eyebrow}</p>
-          <h1 className="heading-display mt-5 text-balance text-[1.65rem] leading-[1.08] text-white sm:mt-6 sm:text-[2.75rem] lg:text-[3.15rem]">
+          <p className="label-meta text-brand-gold-soft">{hero.eyebrow}</p>
+          <h1 className="heading-display mt-5 text-balance text-[1.65rem] leading-[1.08] text-white sm:mt-6 sm:text-[2.65rem] lg:text-[3.05rem]">
             {hero.headline}
           </h1>
           <p className="body-lead mt-5 max-w-full text-pretty text-base leading-[1.8] text-white/92 sm:mt-6 sm:max-w-[62ch] sm:text-[1.0625rem] sm:leading-[1.82]">

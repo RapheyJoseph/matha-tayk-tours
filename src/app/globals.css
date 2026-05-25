@@ -186,11 +186,11 @@
   }
 
   & > section + section {
-    padding-top: var(--spacing-editorial-gap);
+    padding-top: var(--spacing-collection-flow-gap);
   }
 
   & > section:last-child {
-    padding-bottom: var(--spacing-editorial-gap);
+    padding-bottom: var(--spacing-collection-flow-footer);
   }
 }
 
@@ -212,6 +212,43 @@
 @utility collection-card-grid {
   display: grid;
   gap: var(--spacing-editorial-card);
+}
+
+/* About page — optical flow & internal rhythm (scoped to /about) */
+@utility about-editorial-flow {
+  width: 100%;
+  max-width: 100%;
+  margin-inline: auto;
+
+  & > section {
+    padding-block: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  & > section + section {
+    padding-top: var(--spacing-about-flow-base);
+  }
+
+  & > section:last-child {
+    padding-bottom: var(--spacing-about-flow-footer);
+  }
+}
+
+@utility about-block-gap {
+  margin-top: var(--spacing-about-block-gap);
+}
+
+@utility about-card-grid {
+  display: grid;
+  gap: var(--spacing-about-card-gap);
+}
+
+@utility about-pillar-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-about-pillar-gap);
+  margin-top: var(--spacing-about-block-gap);
 }
 
 @utility featured-departure-intro {
@@ -661,11 +698,45 @@
 
   /** Footer premium surface */
   .footer-surface {
+    position: relative;
     background: linear-gradient(
       180deg,
-      rgb(248 246 242) 0%,
+      rgb(250 248 244) 0%,
+      rgb(247 244 238) 42%,
       rgb(245 241 235) 100%
     );
+  }
+
+  .footer-surface::before {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgb(200 169 107 / 0.22) 22%,
+      rgb(200 169 107 / 0.38) 50%,
+      rgb(200 169 107 / 0.22) 78%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+
+  .site-shell:has(.collection-editorial-flow) .footer-surface::after,
+  .site-shell:has(.about-editorial-flow) .footer-surface::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: min(6rem, 14vw);
+    background: linear-gradient(
+      180deg,
+      rgb(24 24 27 / 0.04) 0%,
+      transparent 100%
+    );
+    pointer-events: none;
   }
 
   /** Nankana Sahib — cinematic editorial destination panel */
@@ -1226,19 +1297,102 @@
 
   .collection-hero-vignette {
     background: radial-gradient(
-      ellipse 120% 100% at 50% 100%,
-      transparent 38%,
-      rgb(10 10 12 / 0.5) 100%
+      ellipse 130% 88% at 50% 100%,
+      transparent 32%,
+      rgb(10 10 12 / 0.42) 100%
     );
   }
 
   .collection-hero-haze {
     background: linear-gradient(
       90deg,
-      rgb(12 12 12 / 0.45) 0%,
-      rgb(12 12 12 / 0.2) 45%,
-      transparent 72%
+      rgb(12 12 12 / 0.34) 0%,
+      rgb(12 12 12 / 0.16) 42%,
+      transparent 70%
     );
+  }
+
+  /* Localized contrast for collection hero copy — not a full-hero dim */
+  .collection-hero-readability {
+    background:
+      linear-gradient(
+        0deg,
+        rgb(8 8 12 / 0.58) 0%,
+        rgb(8 8 12 / 0.28) 28%,
+        rgb(8 8 12 / 0.08) 52%,
+        transparent 72%
+      ),
+      linear-gradient(
+        90deg,
+        rgb(8 8 12 / 0.4) 0%,
+        rgb(8 8 12 / 0.18) 36%,
+        transparent 62%
+      );
+  }
+
+  .collection-hero-copy .heading-display {
+    text-shadow:
+      0 2px 28px rgb(0 0 0 / 0.42),
+      0 1px 6px rgb(0 0 0 / 0.32);
+  }
+
+  .collection-hero-copy .label-meta {
+    text-shadow: 0 1px 18px rgb(0 0 0 / 0.45);
+  }
+
+  .collection-hero-copy .body-lead,
+  .collection-hero-copy p {
+    text-shadow: 0 1px 22px rgb(0 0 0 / 0.48);
+  }
+
+  /** About page — refined value card accents (luxury, not corporate rainbow) */
+  .about-value-accent-gold {
+    background: linear-gradient(
+      90deg,
+      rgb(200 169 107 / 0.15),
+      rgb(200 169 107 / 0.85) 50%,
+      rgb(200 169 107 / 0.15)
+    );
+  }
+
+  .about-value-accent-sage {
+    background: linear-gradient(
+      90deg,
+      rgb(120 145 125 / 0.12),
+      rgb(120 145 125 / 0.55) 50%,
+      rgb(120 145 125 / 0.12)
+    );
+  }
+
+  .about-value-accent-amber {
+    background: linear-gradient(
+      90deg,
+      rgb(180 140 80 / 0.12),
+      rgb(200 169 107 / 0.65) 50%,
+      rgb(180 140 80 / 0.12)
+    );
+  }
+
+  .about-value-accent-warm {
+    background: linear-gradient(
+      90deg,
+      rgb(160 120 90 / 0.1),
+      rgb(184 152 90 / 0.5) 50%,
+      rgb(160 120 90 / 0.1)
+    );
+  }
+
+  .about-value-accent-slate {
+    background: linear-gradient(
+      90deg,
+      rgb(82 82 91 / 0.08),
+      rgb(82 82 91 / 0.35) 50%,
+      rgb(82 82 91 / 0.08)
+    );
+  }
+
+  .about-approach-quote p {
+    text-wrap: pretty;
   }
 
   .collection-sikh-hero-gradient {
@@ -1555,9 +1709,51 @@
   }
 
   /*
-   * Collection pages — desktop vertical rhythm (sikh-heritage & peers)
-   * Tiered section gaps · no CTA inset stack · moderated max whitespace
+   * Collection pages — section-to-section vertical rhythm (all breakpoints)
+   * Internal card/prose spacing unchanged · tiered narrative pauses only
    */
+  .collection-editorial-flow > section:first-child + section {
+    padding-top: var(--spacing-collection-flow-major);
+  }
+
+  .collection-editorial-flow
+    > .collection-intro-section
+    + .featured-departure-section,
+  .collection-editorial-flow
+    > .collection-intro-section
+    + .journey-panels-section {
+    padding-top: var(--spacing-collection-flow-major);
+  }
+
+  .collection-editorial-flow
+    > .featured-departure-section
+    + .journey-panels-section,
+  .collection-editorial-flow
+    > .journey-panels-section
+    + .experience-grid-section {
+    padding-top: var(--spacing-collection-flow-bridge);
+  }
+
+  .collection-editorial-flow
+    > .experience-grid-section
+    + .cinematic-spread-section {
+    padding-top: var(--spacing-collection-flow-experience-spread);
+  }
+
+  .collection-editorial-flow
+    > .cinematic-spread-section
+    + .luxury-cta-section {
+    padding-top: var(--spacing-collection-flow-epilogue);
+  }
+
+  .journey-panels-section .editorial-image-stack.collection-card-grid {
+    gap: var(--spacing-collection-chapter-gap);
+  }
+
+  .collection-editorial-flow > .luxury-cta-section {
+    padding-bottom: var(--spacing-collection-flow-footer);
+  }
+
   @media (width >= 1024px) {
     .collection-editorial-flow > section + section {
       padding-top: var(--spacing-collection-gap-lg);
@@ -1567,17 +1763,42 @@
       padding-top: var(--spacing-collection-gap-major-lg);
     }
 
-    .collection-editorial-flow > .collection-intro-section + .featured-departure-section {
+    .collection-editorial-flow
+      > .collection-intro-section
+      + .featured-departure-section,
+    .collection-editorial-flow
+      > .collection-intro-section
+      + .journey-panels-section {
       padding-top: var(--spacing-collection-gap-major-lg);
     }
 
-    .collection-editorial-flow > .experience-grid-section + .cinematic-spread-section,
-    .collection-editorial-flow > .cinematic-spread-section + .luxury-cta-section {
-      padding-top: var(--spacing-collection-gap-panel-lg);
+    .collection-editorial-flow
+      > .featured-departure-section
+      + .journey-panels-section,
+    .collection-editorial-flow
+      > .journey-panels-section
+      + .experience-grid-section {
+      padding-top: var(--spacing-collection-gap-bridge-lg);
+    }
+
+    .collection-editorial-flow
+      > .experience-grid-section
+      + .cinematic-spread-section {
+      padding-top: var(--spacing-collection-gap-experience-spread-lg);
+    }
+
+    .collection-editorial-flow
+      > .cinematic-spread-section
+      + .luxury-cta-section {
+      padding-top: var(--spacing-collection-gap-epilogue-lg);
+    }
+
+    .journey-panels-section .editorial-image-stack.collection-card-grid {
+      gap: var(--spacing-collection-chapter-gap-lg);
     }
 
     .collection-editorial-flow > section:last-child {
-      padding-bottom: var(--spacing-collection-gap-lg);
+      padding-bottom: var(--spacing-collection-footer-lg);
     }
 
     .collection-editorial-flow .collection-block-gap {
@@ -1592,9 +1813,153 @@
       margin-top: var(--spacing-collection-block-lg);
     }
 
-    /* CTA: one transition gap above (flow); band breathing below only */
+    /* CTA: flow gap above; extra band breathing before footer */
     .collection-editorial-flow > .luxury-cta-section {
       padding-bottom: var(--spacing-collection-cta-inset-lg);
+    }
+  }
+
+  /*
+   * About page — optical chapter pacing & tone transitions
+   * Not equal spacing: major pauses, tone bridges, pre-CTA exhale
+   */
+  .about-editorial-flow > section:first-child + section {
+    padding-top: var(--spacing-about-flow-major);
+  }
+
+  .about-editorial-flow > .about-origin-section + .about-philosophy-section,
+  .about-editorial-flow > .about-philosophy-section + .about-unity-section,
+  .about-editorial-flow > .about-approach-section + .about-values-section {
+    padding-top: var(--spacing-about-flow-tone);
+  }
+
+  .about-editorial-flow > .about-unity-section + .about-mission-section {
+    padding-top: var(--spacing-about-flow-chapter);
+  }
+
+  .about-editorial-flow > .about-mission-section + .about-approach-section {
+    padding-top: var(--spacing-about-flow-bridge);
+  }
+
+  .about-editorial-flow > .about-values-section + .luxury-cta-section {
+    padding-top: var(--spacing-about-flow-pre-cta);
+  }
+
+  .about-editorial-flow > .luxury-cta-section {
+    padding-bottom: var(--spacing-about-flow-footer);
+  }
+
+  .about-editorial-flow .about-section-band > div {
+    padding-block: var(--spacing-about-inner-y);
+  }
+
+  .about-editorial-flow .about-chapter-band > div {
+    padding-block: var(--spacing-about-chapter-inner-y);
+  }
+
+  .about-philosophy-section::before,
+  .about-unity-section::before,
+  .about-mission-section::before,
+  .about-approach-section::before,
+  .about-values-section::before {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    z-index: 5;
+    height: clamp(2.25rem, 5.5vw, 4rem);
+    pointer-events: none;
+  }
+
+  .about-philosophy-section::before {
+    background: linear-gradient(to bottom, #f8f6f2 0%, transparent 100%);
+  }
+
+  .about-unity-section::before {
+    background: linear-gradient(to bottom, #f5f1eb 0%, transparent 100%);
+  }
+
+  .about-mission-section::before {
+    background: linear-gradient(to bottom, #faf8f5 0%, transparent 100%);
+  }
+
+  .about-approach-section::before {
+    background: linear-gradient(to bottom, #f8f6f2 0%, transparent 100%);
+  }
+
+  .about-values-section::before {
+    background: linear-gradient(to bottom, #f5f1eb 0%, transparent 100%);
+  }
+
+  .about-philosophy-section .about-split-grid {
+    gap: var(--spacing-about-split-gap);
+  }
+
+  .about-editorial-flow .about-block-gap {
+    margin-top: var(--spacing-about-block-gap);
+  }
+
+  .about-editorial-flow .about-pillar-stack {
+    margin-top: var(--spacing-about-block-gap);
+  }
+
+  @media (width >= 1024px) {
+    .about-editorial-flow > section + section {
+      padding-top: var(--spacing-about-gap-lg);
+    }
+
+    .about-editorial-flow > section:first-child + section {
+      padding-top: var(--spacing-about-major-lg);
+    }
+
+    .about-editorial-flow > .about-origin-section + .about-philosophy-section,
+    .about-editorial-flow > .about-philosophy-section + .about-unity-section,
+    .about-editorial-flow > .about-approach-section + .about-values-section {
+      padding-top: var(--spacing-about-tone-lg);
+    }
+
+    .about-editorial-flow > .about-unity-section + .about-mission-section {
+      padding-top: var(--spacing-about-chapter-lg);
+    }
+
+    .about-editorial-flow > .about-mission-section + .about-approach-section {
+      padding-top: var(--spacing-about-bridge-lg);
+    }
+
+    .about-editorial-flow > .about-values-section + .luxury-cta-section {
+      padding-top: var(--spacing-about-pre-cta-lg);
+    }
+
+    .about-editorial-flow > section:last-child {
+      padding-bottom: var(--spacing-about-footer-lg);
+    }
+
+    .about-editorial-flow > .luxury-cta-section {
+      padding-bottom: var(--spacing-about-pre-cta-lg);
+    }
+
+    .about-editorial-flow .about-section-band > div {
+      padding-block: var(--spacing-about-inner-y-lg);
+    }
+
+    .about-editorial-flow .about-chapter-band > div {
+      padding-block: var(--spacing-about-chapter-inner-y-lg);
+    }
+
+    .about-philosophy-section .about-split-grid {
+      gap: var(--spacing-about-split-gap-lg);
+    }
+
+    .about-editorial-flow .about-card-grid {
+      gap: var(--spacing-about-card-gap-lg);
+    }
+
+    .about-editorial-flow .about-block-gap {
+      margin-top: var(--spacing-about-block-lg);
+    }
+
+    .about-editorial-flow .about-pillar-stack {
+      margin-top: var(--spacing-about-block-lg);
     }
   }
 }

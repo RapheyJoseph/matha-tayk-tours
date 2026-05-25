@@ -21,6 +21,7 @@ export const heroMedia = {
 } as const;
 
 export const navLinks = [
+  { href: "/about", label: "About Us" },
   { href: "/#collections", label: "Journeys" },
   { href: "/#contact", label: "Contact" },
 ] as const;
