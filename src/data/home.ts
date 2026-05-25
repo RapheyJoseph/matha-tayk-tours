@@ -28,8 +28,8 @@ export const navLinks = [
 export const collectionNavLinks = [
   { href: "/collections/sikh-heritage", label: "Sikh Heritage" },
   { href: "/collections/buddhist-journeys", label: "Buddhist Heritage" },
-  { href: "/collections/pakistan-heritage", label: "Pakistan" },
-  { href: "/collections/uae-luxury", label: "UAE Luxury" },
+  { href: "/collections/pakistan-heritage", label: "Discover Pakistan" },
+  { href: "/collections/uae-luxury", label: "Discover UAE Luxury" },
 ] as const;
 
 export const featuredTours = [

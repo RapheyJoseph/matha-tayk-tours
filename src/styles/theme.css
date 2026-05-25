@@ -45,25 +45,45 @@
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
-  /* Editorial rhythm — calm luxury pacing */
-  --spacing-section-y: clamp(5.75rem, 11.5vw, 10.5rem);
-  --spacing-section-y-lg: clamp(6.5rem, 13vw, 11.5rem);
+  /*
+   * Editorial spacing scale — site-wide vertical rhythm
+   * Mobile: tighter & even · Desktop: generous luxury whitespace
+   */
+  --spacing-editorial-gap: clamp(2.5rem, 5vw, 6.875rem);
+  --spacing-editorial-header: clamp(1.125rem, 2vw, 1.625rem);
+  --spacing-editorial-lead: clamp(1.25rem, 2vw, 1.75rem);
+  --spacing-editorial-block: clamp(1.75rem, 3vw, 2.75rem);
+  --spacing-editorial-card: clamp(1.25rem, 2vw, 1.75rem);
+  --spacing-editorial-stack: clamp(1rem, 1.5vw, 1.5rem);
+  --spacing-editorial-intro: clamp(1.5rem, 2.5vw, 2.5rem);
+  --spacing-editorial-inset: clamp(2.5rem, 4vw, 4rem);
+  --spacing-editorial-cta: clamp(1.75rem, 2.5vw, 2.5rem);
 
-  /* Homepage — luxury editorial rhythm (py-12 → py-24) */
+  /* Standalone sections (not inside editorial-flow) */
+  --spacing-section-y: clamp(4rem, 8vw, 10.5rem);
+  --spacing-section-y-lg: clamp(5rem, 11.5vw, 11.5rem);
+
+  /* Aliases — homepage & collection flows share one scale */
   --spacing-home-section-y: clamp(3rem, 4.5vw, 6rem);
-  --spacing-home-gap: clamp(2.75rem, 4.25vw, 5rem);
-  --spacing-home-header: clamp(1.25rem, 2vw, 1.625rem);
-  --spacing-home-block: clamp(1.75rem, 2.5vw, 2.25rem);
-  --spacing-home-card-gap: clamp(1.25rem, 1.75vw, 1.75rem);
-  --spacing-home-prose: clamp(0.875rem, 1.25vw, 1rem);
+  --spacing-home-gap: var(--spacing-editorial-gap);
+  --spacing-home-header: var(--spacing-editorial-header);
+  --spacing-home-block: var(--spacing-editorial-block);
+  --spacing-home-card-gap: var(--spacing-editorial-card);
+  --spacing-home-prose: var(--spacing-editorial-stack);
 
-  /* Collection pages — tighter editorial flow (48px–110px between sections) */
-  --spacing-collection-gap: clamp(3rem, 6.5vw, 6.875rem);
-  --spacing-collection-header: clamp(1.25rem, 2vw, 1.625rem);
-  --spacing-collection-prose: clamp(0.875rem, 1.5vw, 1.125rem);
-  --spacing-collection-block: clamp(2rem, 3.25vw, 2.75rem);
-  --spacing-collection-card-gap: clamp(1.125rem, 1.75vw, 1.5rem);
-  --spacing-collection-cta: clamp(2rem, 3vw, 2.5rem);
+  --spacing-collection-gap: var(--spacing-editorial-gap);
+  --spacing-collection-header: var(--spacing-editorial-header);
+  --spacing-collection-prose: var(--spacing-editorial-stack);
+  --spacing-collection-block: var(--spacing-editorial-block);
+  --spacing-collection-card-gap: var(--spacing-editorial-card);
+  --spacing-collection-cta: var(--spacing-editorial-cta);
+
+  /* Collection pages — desktop editorial rhythm (lg+, capped for even flow) */
+  --spacing-collection-gap-lg: clamp(3.25rem, 4.25vw, 5.25rem);
+  --spacing-collection-gap-major-lg: clamp(3.75rem, 5vw, 5.75rem);
+  --spacing-collection-gap-panel-lg: clamp(3.25rem, 4vw, 4.75rem);
+  --spacing-collection-block-lg: clamp(2rem, 2.5vw, 2.875rem);
+  --spacing-collection-cta-inset-lg: clamp(3.5rem, 4.25vw, 5rem);
 
   /* Atmospheric depth */
   --shadow-subtle: 0 4px 24px rgb(24 24 27 / 0.035);

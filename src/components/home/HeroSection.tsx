@@ -14,7 +14,7 @@ export function HeroSection() {
 
   return (
     <section
-      className="relative flex min-h-[100dvh] items-end overflow-hidden bg-brand-pearl pb-24 pt-48 sm:items-center sm:pb-28 sm:pt-44 md:pt-48 lg:pb-32 lg:pt-52"
+      className="relative flex min-h-[100svh] items-end overflow-hidden bg-brand-pearl pb-20 pt-[calc(7.5rem+env(safe-area-inset-top,0px))] sm:items-center sm:pb-28 sm:pt-44 md:pt-48 lg:pb-32 lg:pt-52"
       aria-label="Hero"
     >
       <motion.div
@@ -72,20 +72,20 @@ export function HeroSection() {
       />
 
       <motion.div
-        className="relative z-10 mx-auto w-full max-w-[1440px] gutter-x"
+        className="relative z-10 mx-auto w-full min-w-0 max-w-[1440px] gutter-x"
         initial={reduceMotion ? false : { opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
       >
         <motion.div
-          className="max-w-lg sm:max-w-xl lg:max-w-2xl"
+          className="w-full min-w-0 max-w-lg sm:max-w-xl lg:max-w-2xl"
           initial={reduceMotion ? "visible" : "hidden"}
           animate="visible"
           variants={staggerParent}
         >
           <motion.h1
             variants={slideUp}
-            className="heading-display max-w-[19rem] text-[1.85rem] leading-[1.08] min-[400px]:max-w-[21rem] sm:max-w-[25rem] sm:text-[2.25rem] md:max-w-[27rem] md:text-[2.55rem] lg:max-w-[29rem] lg:text-[2.85rem] xl:max-w-[31rem] xl:text-[3.15rem] xl:leading-[1.05]"
+            className="heading-display w-full max-w-[19rem] text-balance text-[1.75rem] leading-[1.08] min-[400px]:max-w-[21rem] min-[400px]:text-[1.85rem] sm:max-w-[25rem] sm:text-[2.25rem] md:max-w-[27rem] md:text-[2.55rem] lg:max-w-[29rem] lg:text-[2.85rem] xl:max-w-[31rem] xl:text-[3.15rem] xl:leading-[1.05]"
           >
             <span className="block">Enter Curated</span>
             <span className="mt-1 block sm:mt-1.5">Sacred Worlds</span>
@@ -95,23 +95,27 @@ export function HeroSection() {
           </motion.h1>
           <motion.p
             variants={slideUp}
-            className="body-lead prose-editorial mt-8 sm:mt-9"
+            className="body-lead prose-editorial editorial-lead-gap max-w-[36ch] text-pretty sm:max-w-none"
           >
             From Punjab&apos;s gurdwaras to Silk Route stone, Emirates calm, and
             ancient valleys—we compose private arcs with reverence, not spectacle.
           </motion.p>
           <motion.div
             variants={fadeIn}
-            className="mt-11 flex flex-col gap-4 sm:mt-12 sm:flex-row sm:items-center sm:gap-5"
+            className="editorial-cta-gap flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center sm:gap-5"
           >
-            <Button asChild size="lg" className="min-w-[220px] shadow-[0_12px_40px_-10px_rgba(200,169,107,0.5)]">
+            <Button
+              asChild
+              size="lg"
+              className="w-full shadow-[0_12px_40px_-10px_rgba(200,169,107,0.5)] sm:w-auto sm:min-w-[220px]"
+            >
               <a href="#collections">Explore Journeys</a>
             </Button>
             <Button
               asChild
               size="lg"
               variant="secondary"
-              className="min-w-[220px] border-brand-charcoal/[0.12]"
+              className="w-full border-brand-charcoal/[0.12] sm:w-auto sm:min-w-[220px]"
             >
               <Link href="/collections/sikh-heritage#autumn-departure">
                 Autumn Fellowship

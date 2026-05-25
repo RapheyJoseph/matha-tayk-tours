@@ -11,13 +11,13 @@ import { faqPreview } from "@/data/home";
 export function FaqPreviewSection() {
   return (
     <SectionContainer id="faq" variant="cream" paddedTop>
-      <div className="grid gap-16 lg:grid-cols-12 lg:items-start lg:gap-14">
+      <div className="editorial-intro-row lg:grid lg:grid-cols-12 lg:items-start lg:gap-14">
         <Reveal className="lg:col-span-4">
           <p className="eyebrow">Questions, answered with calm</p>
-          <h2 className="heading-section mt-6 text-3xl sm:text-4xl">
+          <h2 className="heading-section editorial-heading text-balance">
             The details that make heritage travel feel effortless.
           </h2>
-          <p className="body-copy mt-6">
+          <p className="body-copy editorial-lead-gap">
             Should you wish to speak with our concierge before browsing
             itineraries, we are never more than a message away.
           </p>
@@ -27,7 +27,7 @@ export function FaqPreviewSection() {
             <Accordion type="single" collapsible className="w-full">
               {faqPreview.map((item, index) => (
                 <AccordionItem key={item.question} value={`item-${index}`}>
-                  <AccordionTrigger className="py-6 text-left font-serif text-lg text-brand-charcoal sm:text-xl">
+                  <AccordionTrigger className="py-5 text-left font-serif text-base text-brand-charcoal sm:py-6 sm:text-lg lg:text-xl">
                     {item.question}
                   </AccordionTrigger>
                   <AccordionContent className="pb-6 text-[15px] leading-relaxed">

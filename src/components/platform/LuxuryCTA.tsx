@@ -29,7 +29,7 @@ export function LuxuryCTA({
   atmosphereClass = "autumn-departures-gradient",
 }: LuxuryCTAProps) {
   return (
-    <section className="relative overflow-hidden bg-brand-charcoal pt-12 sm:pt-14 lg:pt-16">
+    <section className="luxury-cta-section relative overflow-hidden bg-brand-charcoal max-lg:editorial-inset-y">
       <div className="absolute inset-0">
         <Image
           src={image}
@@ -54,22 +54,28 @@ export function LuxuryCTA({
         />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-[1440px] gutter-x">
+      <div className="relative z-10 mx-auto w-full min-w-0 max-w-[1440px] gutter-x">
         <Reveal>
-          <div className="mx-auto max-w-2xl text-center">
+          <div className="mx-auto w-full min-w-0 max-w-2xl text-center">
             <p className="eyebrow text-brand-gold-soft">{eyebrow}</p>
-            <h2 className="heading-section mt-5 text-white sm:mt-6">{headline}</h2>
-            <p className="body-lead mx-auto mt-6 max-w-lg text-white/85 sm:mt-7">
+            <h2 className="heading-section editorial-heading text-balance text-white">
+              {headline}
+            </h2>
+            <p className="body-lead editorial-lead-gap mx-auto max-w-full text-pretty text-white/85 sm:max-w-lg">
               {body}
             </p>
             <motion.div
-              className="mt-9 flex flex-col items-center justify-center gap-4 sm:mt-10 sm:flex-row"
+              className="editorial-cta-gap flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4"
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
             >
-              <Button asChild size="lg" className="autumn-departures-cta min-w-[220px]">
+              <Button
+                asChild
+                size="lg"
+                className="autumn-departures-cta w-full sm:w-auto sm:min-w-[220px]"
+              >
                 <Link href="/#contact">
                   <Mail className="size-4" />
                   Plan your journey
@@ -79,7 +85,7 @@ export function LuxuryCTA({
                 asChild
                 size="lg"
                 variant="secondary"
-                className="min-w-[220px] border-white/20 bg-white/10 text-white hover:bg-white/15"
+                className="w-full border-white/20 bg-white/10 text-white hover:bg-white/15 sm:w-auto sm:min-w-[220px]"
               >
                 <a href={siteConfig.whatsapp} target="_blank" rel="noreferrer">
                   <MessageCircle className="size-4" />

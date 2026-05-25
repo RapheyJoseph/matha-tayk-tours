@@ -17,11 +17,11 @@ const footerColumns = [
 export function Footer() {
   return (
     <footer className="footer-surface text-brand-body">
-      <div className="mx-auto max-w-[1440px] gutter-x py-12 sm:py-14 lg:py-16">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-7">
-          <div className="lg:col-span-4">
-            <Link href="/" className="inline-flex flex-col">
-              <span className="font-serif text-[1.65rem] tracking-[0.06em] text-brand-charcoal">
+      <div className="safe-bottom mx-auto w-full min-w-0 max-w-[1440px] gutter-x py-12 sm:py-14 lg:py-16">
+        <div className="grid min-w-0 gap-10 md:grid-cols-2 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-7">
+          <div className="min-w-0 lg:col-span-4">
+            <Link href="/" className="inline-flex min-w-0 flex-col">
+              <span className="font-serif text-[1.45rem] tracking-[0.06em] text-brand-charcoal sm:text-[1.65rem]">
                 {siteConfig.name}
               </span>
               <span className="body-copy mt-5 max-w-xs leading-[1.75]">
@@ -40,7 +40,7 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-10 md:col-span-1 lg:col-span-4 lg:grid-cols-2">
+          <div className="grid grid-cols-1 gap-8 min-[420px]:grid-cols-2 min-[420px]:gap-10 md:col-span-1 lg:col-span-4 lg:grid-cols-2">
             {footerColumns.map((col) => (
               <div key={col.title}>
                 <h3 className="label-meta text-[10px]">{col.title}</h3>

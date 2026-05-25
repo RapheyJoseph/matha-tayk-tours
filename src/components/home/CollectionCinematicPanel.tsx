@@ -60,7 +60,7 @@ export function CollectionCinematicPanel({
       )}
       aria-label={`Enter ${collection.title}`}
     >
-      <div className="relative aspect-[21/9] min-h-[340px] w-full overflow-hidden bg-brand-charcoal sm:min-h-[380px] lg:min-h-[440px]">
+      <div className="relative aspect-[4/3] min-h-[260px] w-full overflow-hidden bg-brand-charcoal sm:aspect-[21/9] sm:min-h-[380px] lg:min-h-[440px]">
         <Image
           src={collection.image}
           alt={collection.imageAlt}
@@ -156,6 +156,15 @@ export function CollectionCinematicPanel({
           />
         )}
         <div
+          className={cn(
+            "collection-card-mobile-scrim pointer-events-none absolute inset-0 z-[1] sm:hidden",
+            isRight
+              ? "collection-card-mobile-scrim--right"
+              : "collection-card-mobile-scrim--left",
+          )}
+          aria-hidden
+        />
+        <div
           className="collection-panel-vignette pointer-events-none absolute inset-0 transition-opacity duration-700 group-hover/collection:opacity-80"
           aria-hidden
         />
@@ -166,29 +175,39 @@ export function CollectionCinematicPanel({
 
         <div
           className={cn(
-            "absolute inset-0 z-[2] flex flex-col justify-end p-9 sm:p-11 lg:p-14 xl:p-16",
-            isRight ? "items-end text-right" : "items-start text-left",
+            "absolute inset-0 z-[2] flex flex-col justify-end px-7 pb-8 pt-16 sm:p-11 sm:pt-0 lg:p-14 xl:p-16",
+            isRight
+              ? "items-start text-left sm:items-end sm:text-right"
+              : "items-start text-left",
           )}
         >
           <div
             className={cn(
-              "max-w-xl lg:max-w-2xl",
-              isRight && "ml-auto",
+              "w-full min-w-0 max-w-[92%] sm:max-w-xl lg:max-w-2xl",
+              isRight && "sm:ml-auto",
             )}
           >
             <p className="label-meta text-brand-gold-soft">{collection.eyebrow}</p>
-            <h3 className="mt-5 font-serif text-[2rem] leading-[1.08] tracking-[-0.025em] text-white [text-shadow:0_2px_24px_rgba(0,0,0,0.4)] sm:text-[2.35rem] lg:text-[2.75rem]">
+            <h3 className="mt-3 text-balance font-serif text-[1.35rem] leading-[1.12] tracking-[-0.02em] text-white [text-shadow:0_2px_28px_rgba(0,0,0,0.55)] sm:mt-5 sm:text-[2rem] sm:leading-[1.08] md:text-[2.35rem] lg:text-[2.75rem]">
               {collection.title}
             </h3>
-            <p className="mt-6 max-w-[44ch] text-base leading-[1.78] text-white/92 sm:text-[1.0625rem] sm:leading-[1.8] [text-shadow:0_1px_18px_rgba(0,0,0,0.35)]">
+            <p
+              className={cn(
+                "mt-5 max-w-full text-pretty text-[13px] leading-[1.68] tracking-[0.01em] text-white/94",
+                "line-clamp-3 min-[400px]:line-clamp-4",
+                "[text-shadow:0_1px_20px_rgba(0,0,0,0.5)]",
+                "sm:mt-6 sm:line-clamp-none sm:max-w-[44ch] sm:text-base sm:leading-[1.8] sm:text-white/92",
+                "md:text-[1.0625rem]",
+              )}
+            >
               {collection.lead}
             </p>
           </div>
 
           <span
             className={cn(
-              "pointer-events-none mt-10 flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2.5",
-              "text-[10px] font-semibold uppercase tracking-[0.24em] text-white/90 backdrop-blur-md",
+              "pointer-events-none hidden items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2.5 sm:flex",
+              "mt-10 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/90 backdrop-blur-md",
               "opacity-0 translate-y-2 transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
               "group-hover/collection:translate-y-0 group-hover/collection:opacity-100",
               isRight ? "mr-0" : "ml-0",

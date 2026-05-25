@@ -8,13 +8,13 @@ interface DestinationIntroProps {
 
 export function DestinationIntro({ introduction }: DestinationIntroProps) {
   return (
-    <SectionContainer variant="pearl" paddedTop atmosphere={false}>
-      <div className="mx-auto max-w-3xl">
+    <SectionContainer variant="pearl" paddedTop={false} atmosphere={false}>
+      <div className="mx-auto w-full min-w-0 max-w-3xl">
         <Reveal>
           <p className="eyebrow">{introduction.eyebrow}</p>
-          <h2 className="heading-section mt-7">{introduction.title}</h2>
+          <h2 className="heading-section editorial-heading">{introduction.title}</h2>
         </Reveal>
-        <div className="mt-12 space-y-7">
+        <div className="editorial-stack editorial-block-gap">
           {introduction.paragraphs.map((paragraph, i) => (
             <Reveal key={paragraph.slice(0, 24)} delay={0.06 * i}>
               <p className="body-lead prose-editorial">{paragraph}</p>

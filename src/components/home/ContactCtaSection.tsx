@@ -11,15 +11,15 @@ export function ContactCtaSection() {
   return (
     <SectionContainer id="contact" variant="night" paddedTop={false}>
       <Reveal>
-        <div className="editorial-card-static relative overflow-hidden rounded-2xl px-8 py-10 sm:px-12 sm:py-12 lg:px-14 lg:py-14">
+        <div className="editorial-card-static relative overflow-hidden rounded-2xl px-6 py-9 sm:px-12 sm:py-12 lg:px-14 lg:py-14">
           <div
             className="pointer-events-none absolute inset-y-0 right-0 w-1/2 bg-[radial-gradient(circle_at_80%_20%,rgba(200,169,107,0.08),transparent_60%)]"
             aria-hidden
           />
-          <div className="relative z-[1] grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-center lg:gap-12">
-            <div>
+          <div className="editorial-intro-row relative z-[1] min-w-0 lg:grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-center lg:gap-12">
+            <div className="min-w-0">
               <p className="eyebrow">Begin quietly, begin well</p>
-              <h2 className="heading-section home-heading text-3xl sm:text-4xl lg:text-[2.85rem]">
+              <h2 className="heading-section home-heading max-w-full text-balance sm:text-4xl lg:text-[2.85rem]">
                 Share the outline of your journey—we&apos;ll return with a
                 composed proposal.
               </h2>

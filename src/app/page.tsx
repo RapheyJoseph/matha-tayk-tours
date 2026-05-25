@@ -6,7 +6,7 @@ import { JourneyCollectionsSection } from "@/components/home/JourneyCollectionsS
 
 export default function HomePage() {
   return (
-    <div className="home-editorial-flow">
+    <div className="home-editorial-flow min-w-0 overflow-x-clip">
       <HeroSection />
       <JourneyCollectionsSection />
       {/* <TestimonialsSection /> */}

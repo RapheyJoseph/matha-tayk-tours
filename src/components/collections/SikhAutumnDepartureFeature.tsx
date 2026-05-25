@@ -26,22 +26,23 @@ export function SikhAutumnDepartureFeature({
       variant="cream"
       paddedTop={false}
       atmosphere={false}
-      className="scroll-mt-32"
+      className="featured-departure-section"
+      innerClassName="flex w-full min-w-0 flex-col items-stretch"
     >
-      <Reveal className="featured-departure-intro mb-9 sm:mb-10">
+      <Reveal className="featured-departure-intro w-full min-w-0">
         <p className="eyebrow">{departure.sectionEyebrow}</p>
         <h2 className="heading-section collection-heading w-full max-w-full text-balance">
           {departure.sectionTitle}
         </h2>
-        <p className="body-lead mt-5 max-w-[62ch] text-pretty leading-[1.84] text-brand-body sm:mt-6 sm:leading-[1.86]">
+        <p className="body-lead editorial-lead-gap max-w-[62ch] text-pretty leading-[1.84] text-brand-body sm:leading-[1.86]">
           {departure.sectionLead}
         </p>
       </Reveal>
 
-      <Reveal delay={0.08}>
+      <Reveal delay={0.08} className="editorial-panel-slot editorial-block-gap w-full min-w-0">
         <div
           className={cn(
-            "group/departure relative isolate min-h-[min(92vw,440px)] overflow-hidden rounded-[1.35rem]",
+            "editorial-panel-slot group/departure relative isolate mx-auto min-h-[min(92vw,440px)] w-full max-w-full overflow-hidden rounded-[1.35rem]",
             "sm:min-h-[480px] lg:min-h-[520px] xl:min-h-[540px]",
             "shadow-[0_36px_88px_-28px_rgba(12,10,8,0.48),0_16px_48px_-20px_rgba(12,10,8,0.32)]",
             "transition-shadow duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
@@ -85,7 +86,7 @@ export function SikhAutumnDepartureFeature({
             aria-hidden
           />
 
-          <div className="relative z-[3] flex min-h-[inherit] flex-col justify-center px-8 py-12 sm:px-12 sm:py-14 lg:px-16 lg:py-16 xl:px-20">
+          <div className="relative z-[3] flex min-h-[inherit] flex-col justify-center px-6 py-10 sm:px-12 sm:py-14 lg:px-16 lg:py-16 xl:px-20">
             <div className="max-w-xl lg:max-w-2xl">
               <div className="inline-flex items-center gap-2.5 rounded-full border border-brand-gold/40 bg-black/30 px-5 py-2.5 shadow-[0_8px_32px_rgba(0,0,0,0.22)] backdrop-blur-md">
                 <Sparkles
@@ -98,7 +99,7 @@ export function SikhAutumnDepartureFeature({
               </div>
 
               <p className="eyebrow mt-8 text-brand-gold-soft sm:mt-9">{departure.eyebrow}</p>
-              <h3 className="mt-4 font-serif text-[2.05rem] leading-[1.07] tracking-[-0.025em] text-white sm:mt-5 sm:text-[2.45rem] lg:text-[2.75rem] lg:leading-[1.05]">
+              <h3 className="mt-4 text-balance font-serif text-[1.75rem] leading-[1.07] tracking-[-0.025em] text-white sm:mt-5 sm:text-[2.45rem] lg:text-[2.75rem] lg:leading-[1.05]">
                 {departure.title}
               </h3>
               <p className="mt-5 font-serif text-lg tracking-[-0.01em] text-white/93 sm:mt-6 sm:text-xl">
@@ -121,7 +122,7 @@ export function SikhAutumnDepartureFeature({
                   asChild
                   size="lg"
                   className={cn(
-                    "autumn-departures-cta min-w-[260px] sm:min-w-[280px]",
+                    "autumn-departures-cta w-full min-w-0 sm:w-auto sm:min-w-[260px] md:min-w-[280px]",
                     "shadow-[0_14px_44px_-10px_rgba(200,169,107,0.55)]",
                   )}
                 >

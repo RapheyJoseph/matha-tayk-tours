@@ -28,7 +28,7 @@ export function CollectionHero({ collection }: CollectionHeroProps) {
 
   return (
     <section
-      className="relative flex min-h-[88dvh] items-end overflow-hidden bg-brand-charcoal sm:min-h-[92dvh]"
+      className="relative flex min-h-[72svh] items-end overflow-hidden bg-brand-charcoal sm:min-h-[82svh] lg:min-h-[92dvh]"
       aria-label={`${title} collection`}
     >
       <motion.div
@@ -86,7 +86,7 @@ export function CollectionHero({ collection }: CollectionHeroProps) {
         aria-hidden
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-[1440px] gutter-x pb-6 pt-32 sm:pb-8 sm:pt-36 lg:pb-10 lg:pt-40">
+      <div className="relative z-10 mx-auto w-full min-w-0 max-w-[1440px] gutter-x pb-6 pt-[calc(6.5rem+env(safe-area-inset-top,0px))] sm:pb-8 sm:pt-36 lg:pb-10 lg:pt-40">
         <Link
           href="/#collections"
           className="destination-back-link mb-8 inline-flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.28em] text-white/75 transition-colors duration-500 hover:text-white sm:mb-10"
@@ -99,13 +99,13 @@ export function CollectionHero({ collection }: CollectionHeroProps) {
           initial={reduceMotion ? false : { opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-2xl"
+          className="w-full min-w-0 max-w-2xl"
         >
           <p className="label-meta text-brand-gold-soft">{eyebrow}</p>
-          <h1 className="heading-display mt-5 text-balance text-[2.1rem] leading-[1.06] text-white sm:mt-6 sm:text-[2.75rem] lg:text-[3.15rem]">
+          <h1 className="heading-display mt-5 text-balance text-[1.65rem] leading-[1.08] text-white sm:mt-6 sm:text-[2.75rem] lg:text-[3.15rem]">
             {hero.headline}
           </h1>
-          <p className="mt-5 max-w-[62ch] text-pretty text-base leading-[1.8] text-white/90 sm:mt-6 sm:text-[1.0625rem] sm:leading-[1.82]">
+          <p className="mt-5 max-w-full text-pretty text-base leading-[1.8] text-white/90 sm:mt-6 sm:max-w-[62ch] sm:text-[1.0625rem] sm:leading-[1.82]">
             {hero.subheadline}
           </p>
         </motion.div>

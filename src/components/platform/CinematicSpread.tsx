@@ -37,10 +37,16 @@ export function CinematicSpread({
   const reduceMotion = useReducedMotionAfterHydration();
 
   return (
-    <SectionContainer variant="night" paddedTop={false}>
-      <Reveal>
-        <div className="destination-cinematic-panel group/spread relative overflow-hidden rounded-[1.25rem] bg-brand-charcoal">
-          <div className="relative aspect-[16/10] min-h-[280px] w-full sm:min-h-[360px] lg:aspect-[21/9] lg:min-h-[420px]">
+    <SectionContainer
+      variant="night"
+      paddedTop={false}
+      atmosphere={false}
+      className="cinematic-spread-section"
+      innerClassName="flex w-full min-w-0 flex-col items-stretch"
+    >
+      <Reveal className="editorial-panel-slot w-full min-w-0">
+        <div className="editorial-panel-slot destination-cinematic-panel group/spread relative mx-auto w-full max-w-full overflow-hidden rounded-[1.25rem] bg-brand-charcoal">
+          <div className="relative aspect-[4/3] min-h-[220px] w-full sm:aspect-[16/10] sm:min-h-[360px] lg:aspect-[21/9] lg:min-h-[420px]">
             <Image
               src={image}
               alt={imageAlt}
@@ -66,9 +72,9 @@ export function CinematicSpread({
               aria-hidden
             />
           </div>
-          <div className="border-t border-brand-charcoal/[0.06] bg-brand-white px-8 py-6 sm:px-10 sm:py-7 lg:px-12">
+          <div className="border-t border-brand-charcoal/[0.06] bg-brand-white px-5 py-5 sm:px-10 sm:py-7 lg:px-12">
             <p className="label-meta">{eyebrow}</p>
-            <p className="mt-3 font-serif text-lg leading-[1.45] tracking-[-0.015em] text-brand-charcoal sm:mt-3.5 sm:text-xl">
+            <p className="editorial-prose-gap text-pretty font-serif text-base leading-[1.45] tracking-[-0.015em] text-brand-charcoal sm:text-lg lg:text-xl">
               {caption}
             </p>
           </div>

@@ -27,7 +27,7 @@ SheetOverlay.displayName = DialogPrimitive.Overlay.displayName;
 
 interface SheetContentProps
   extends React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> {
-  side?: "top" | "bottom" | "left" | "right";
+  side?: "top" | "bottom" | "left" | "right" | "full";
 }
 
 const sheetSides = {
@@ -37,6 +37,7 @@ const sheetSides = {
   left: "inset-y-0 left-0 h-full w-3/4 max-w-sm border-r -translate-x-full data-[state=open]:translate-x-0 sm:max-w-md",
   right:
     "inset-y-0 right-0 h-full w-3/4 max-w-sm border-l translate-x-full data-[state=open]:translate-x-0 sm:max-w-md",
+  full: "inset-0 h-[100dvh] w-full max-w-none border-0 translate-x-0 translate-y-1 opacity-0 data-[state=open]:translate-y-0 data-[state=open]:opacity-100",
 };
 
 const SheetContent = React.forwardRef<
@@ -44,18 +45,33 @@ const SheetContent = React.forwardRef<
   SheetContentProps
 >(({ side = "right", className, children, ...props }, ref) => (
   <SheetPortal>
-    <SheetOverlay />
+    <SheetOverlay
+      className={cn(
+        side === "full" &&
+          "bg-brand-charcoal/20 backdrop-blur-[2px] data-[state=open]:bg-brand-charcoal/25",
+      )}
+    />
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        "fixed z-50 gap-4 border-brand-charcoal/[0.08] bg-brand-white/96 p-6 shadow-[var(--shadow-elevated)] backdrop-blur-xl transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform",
+        "fixed z-50 gap-4 border-brand-charcoal/[0.08] bg-brand-white/96 p-6 shadow-[var(--shadow-elevated)] backdrop-blur-xl will-change-transform",
+        side === "full"
+          ? "transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+          : "transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
         sheetSides[side],
         className,
       )}
       {...props}
     >
       {children}
-      <DialogPrimitive.Close className="absolute right-4 top-4 rounded-full p-2 text-brand-body transition-colors hover:bg-brand-charcoal/[0.04] hover:text-brand-charcoal focus:outline-none focus:ring-2 focus:ring-brand-gold disabled:pointer-events-none">
+      <DialogPrimitive.Close
+        className={cn(
+          "absolute rounded-full p-2 text-brand-body transition-colors hover:bg-brand-charcoal/[0.04] hover:text-brand-charcoal focus:outline-none focus:ring-2 focus:ring-brand-gold disabled:pointer-events-none",
+          side === "full"
+            ? "right-[max(1rem,env(safe-area-inset-right,0px))] top-[max(1rem,env(safe-area-inset-top,0px))]"
+            : "right-4 top-4",
+        )}
+      >
         <X className="size-5" />
         <span className="sr-only">Close</span>
       </DialogPrimitive.Close>

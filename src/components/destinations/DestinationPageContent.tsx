@@ -15,7 +15,7 @@ export function DestinationPageContent({
   destination,
 }: DestinationPageContentProps) {
   return (
-    <>
+    <div className="collection-editorial-flow min-w-0 overflow-x-clip">
       <DestinationHero destination={destination} />
       <DestinationIntro introduction={destination.introduction} />
       <DestinationHighlights highlights={destination.highlights} />
@@ -28,6 +28,6 @@ export function DestinationPageContent({
       />
       <DestinationLuxuryDetails details={destination.luxuryDetails} />
       <DestinationClosingCta destination={destination} />
-    </>
+    </div>
   );
 }

@@ -42,7 +42,7 @@ function JourneyEditorialFeature({ tour, index }: JourneyEditorialFeatureProps) 
       <div
         className={cn(
           "flex flex-col gap-10 lg:grid lg:grid-cols-12 lg:items-center lg:gap-14 xl:gap-20",
-          index > 0 && "mt-28 sm:mt-32 lg:mt-40",
+          index > 0 && "editorial-block-gap",
         )}
       >
         {/* Cinematic image panel */}
@@ -52,7 +52,7 @@ function JourneyEditorialFeature({ tour, index }: JourneyEditorialFeatureProps) 
             imageFirst ? "lg:order-1 lg:col-start-1" : "lg:order-2 lg:col-start-6",
           )}
         >
-          <div className="relative aspect-[16/10] min-h-[280px] w-full overflow-hidden sm:min-h-[340px] lg:aspect-[16/11] lg:min-h-[420px] xl:min-h-[480px]">
+          <div className="relative aspect-[4/3] min-h-[220px] w-full overflow-hidden sm:aspect-[16/10] sm:min-h-[340px] lg:aspect-[16/11] lg:min-h-[420px] xl:min-h-[480px]">
             <Image
               src={tour.image}
               alt={tour.imageAlt}
@@ -93,17 +93,17 @@ function JourneyEditorialFeature({ tour, index }: JourneyEditorialFeatureProps) 
             Journey {tour.chapter} · {tour.shortTitle}
           </p>
 
-          <h3 className="heading-section mt-6 text-[1.85rem] sm:text-[2.15rem] lg:text-[2.35rem]">
+          <h3 className="heading-section editorial-heading text-balance sm:text-[2.15rem] lg:text-[2.35rem]">
             {tour.title}
           </h3>
 
-          <p className="body-lead prose-editorial mt-8">{tour.description}</p>
+          <p className="body-lead prose-editorial editorial-lead-gap">{tour.description}</p>
 
-          <p className="mt-10 max-w-md text-sm leading-[1.85] text-brand-body/90">
+          <p className="editorial-prose-gap max-w-md text-sm leading-[1.85] text-brand-body/90">
             {tour.highlights.slice(0, 2).join(" · ")}
           </p>
 
-          <div className="mt-12 flex flex-col gap-8 border-t border-brand-charcoal/[0.06] pt-10 sm:flex-row sm:items-end sm:justify-between">
+          <div className="editorial-block-gap flex flex-col gap-[var(--spacing-editorial-intro)] border-t border-brand-charcoal/[0.06] pt-[var(--spacing-editorial-intro)] sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="label-meta text-[9px] text-brand-body">From</p>
               <p className="mt-2 font-serif text-2xl tracking-[-0.02em] text-brand-charcoal">
@@ -143,21 +143,21 @@ export function FeaturedToursSection() {
         aria-hidden
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-[1440px] gutter-x">
-        <Reveal className="max-w-2xl">
+      <div className="relative z-10 mx-auto w-full min-w-0 max-w-[1440px] gutter-x">
+        <Reveal className="w-full min-w-0 max-w-2xl">
           <p className="eyebrow">Signature departures</p>
-          <h2 className="heading-section mt-7">
+          <h2 className="heading-section editorial-heading">
             A curated sequence of sacred journeys—
             <span className="block sm:inline"> composed, not packaged.</span>
           </h2>
-          <p className="body-lead prose-editorial mt-9 max-w-xl">
+          <p className="body-lead prose-editorial editorial-lead-gap max-w-xl">
             Three private arcs through Pakistan&apos;s living heritage. Each unfolds
             slowly, with space for devotion, reflection, and the quiet luxury of
             time well kept.
           </p>
         </Reveal>
 
-        <div className="mt-24 sm:mt-28 lg:mt-32">
+        <div className="editorial-block-gap">
           {featuredTours.map((tour, index) => (
             <JourneyEditorialFeature key={tour.slug} tour={tour} index={index} />
           ))}

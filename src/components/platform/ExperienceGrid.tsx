@@ -12,7 +12,12 @@ export function ExperienceGrid({
   collectionTitle,
 }: ExperienceGridProps) {
   return (
-    <SectionContainer variant="cream" paddedTop={false}>
+    <SectionContainer
+      variant="cream"
+      paddedTop={false}
+      atmosphere={false}
+      className="experience-grid-section"
+    >
       <Reveal className="max-w-xl">
         <p className="eyebrow">Curated experiences</p>
         <h2 className="heading-section collection-heading">
@@ -24,7 +29,7 @@ export function ExperienceGrid({
       <div className="collection-card-grid collection-block-gap sm:grid-cols-2">
         {experiences.map((item, i) => (
           <Reveal key={item.title} delay={0.05 * i}>
-            <article className="editorial-card h-full rounded-2xl p-7 sm:p-8">
+            <article className="editorial-card h-full rounded-2xl p-6 sm:p-8">
               <h3 className="heading-card text-xl">{item.title}</h3>
               <p className="body-copy mt-4 leading-[1.78]">{item.description}</p>
             </article>

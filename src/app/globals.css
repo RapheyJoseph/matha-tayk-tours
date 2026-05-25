@@ -27,6 +27,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: clip;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -37,6 +38,15 @@
 
   body {
     @apply bg-brand-warm font-sans text-brand-body antialiased;
+    overflow-x: clip;
+    min-width: 0;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  img,
+  video {
+    max-width: 100%;
   }
 
   ::selection {
@@ -64,7 +74,69 @@
   padding-block: var(--spacing-section-y-lg);
 }
 
-/* Homepage — unified editorial rhythm */
+/* —— Editorial spacing utilities (site-wide) —— */
+@utility editorial-flow {
+  & > section {
+    padding-block: 0;
+  }
+
+  & > section + section {
+    padding-top: var(--spacing-editorial-gap);
+  }
+
+  & > section:last-child {
+    padding-bottom: var(--spacing-editorial-gap);
+  }
+}
+
+@utility editorial-heading {
+  margin-top: var(--spacing-editorial-header);
+}
+
+@utility editorial-lead-gap {
+  margin-top: var(--spacing-editorial-lead);
+}
+
+@utility editorial-block-gap {
+  margin-top: var(--spacing-editorial-block);
+}
+
+@utility editorial-prose-gap {
+  margin-top: var(--spacing-editorial-stack);
+}
+
+@utility editorial-cta-gap {
+  margin-top: var(--spacing-editorial-cta);
+}
+
+@utility editorial-intro-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-editorial-intro);
+}
+
+@utility editorial-card-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-editorial-card);
+}
+
+@utility editorial-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-editorial-stack);
+}
+
+@utility editorial-card-grid {
+  display: grid;
+  gap: var(--spacing-editorial-card);
+}
+
+@utility editorial-inset-y {
+  padding-block: var(--spacing-editorial-inset);
+}
+
+/* Homepage — aliases */
 @utility home-section-y {
   padding-block: var(--spacing-home-section-y);
 }
@@ -75,65 +147,71 @@
   }
 
   & > section + section {
-    padding-top: var(--spacing-home-gap);
+    padding-top: var(--spacing-editorial-gap);
   }
 
   & > section:last-child {
-    padding-bottom: var(--spacing-home-gap);
+    padding-bottom: var(--spacing-editorial-gap);
   }
 }
 
 @utility home-heading {
-  margin-top: var(--spacing-home-header);
+  margin-top: var(--spacing-editorial-header);
 }
 
 @utility home-block-gap {
-  margin-top: var(--spacing-home-block);
+  margin-top: var(--spacing-editorial-block);
 }
 
 @utility home-card-stack {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-home-card-gap);
+  gap: var(--spacing-editorial-card);
 }
 
 @utility home-prose-gap {
-  margin-top: var(--spacing-home-prose);
+  margin-top: var(--spacing-editorial-stack);
 }
 
-/* Collection pages — unified editorial rhythm */
+/* Collection pages — aliases */
 @utility collection-editorial-flow {
+  width: 100%;
+  max-width: 100%;
+  margin-inline: auto;
+
   & > section {
     padding-block: 0;
+    width: 100%;
+    max-width: 100%;
   }
 
   & > section + section {
-    padding-top: var(--spacing-collection-gap);
+    padding-top: var(--spacing-editorial-gap);
   }
 
   & > section:last-child {
-    padding-bottom: var(--spacing-collection-gap);
+    padding-bottom: var(--spacing-editorial-gap);
   }
 }
 
 @utility collection-heading {
-  margin-top: var(--spacing-collection-header);
+  margin-top: var(--spacing-editorial-header);
 }
 
 @utility collection-prose-stack {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-collection-prose);
-  margin-top: var(--spacing-collection-block);
+  gap: var(--spacing-editorial-stack);
+  margin-top: var(--spacing-editorial-block);
 }
 
 @utility collection-block-gap {
-  margin-top: var(--spacing-collection-block);
+  margin-top: var(--spacing-editorial-block);
 }
 
 @utility collection-card-grid {
   display: grid;
-  gap: var(--spacing-collection-card-gap);
+  gap: var(--spacing-editorial-card);
 }
 
 @utility featured-departure-intro {
@@ -141,13 +219,40 @@
   max-width: 100%;
 }
 
+/* Large editorial / destination image cards — full-width centered stack */
+@utility editorial-panel-slot {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin-inline: auto;
+  box-sizing: border-box;
+}
+
+@utility editorial-image-stack {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin-inline: auto;
+  justify-items: stretch;
+  box-sizing: border-box;
+}
+
 @utility gutter-x {
-  @apply px-4 sm:px-6 lg:px-8 2xl:px-12;
+  padding-left: max(1rem, env(safe-area-inset-left, 0px));
+  padding-right: max(1rem, env(safe-area-inset-right, 0px));
+}
+
+@utility safe-top {
+  padding-top: max(0px, env(safe-area-inset-top, 0px));
+}
+
+@utility safe-bottom {
+  padding-bottom: max(0px, env(safe-area-inset-bottom, 0px));
 }
 
 /* —— Editorial typography —— */
 @utility eyebrow {
-  @apply text-[11px] font-semibold uppercase tracking-[0.32em] text-brand-gold;
+  @apply text-[10px] font-semibold uppercase tracking-[0.24em] text-brand-gold sm:text-[11px] sm:tracking-[0.32em];
 }
 
 @utility heading-display {
@@ -155,7 +260,7 @@
 }
 
 @utility heading-section {
-  @apply font-serif text-3xl font-medium leading-[1.14] tracking-[-0.025em] text-brand-charcoal sm:text-4xl sm:leading-[1.12] lg:text-[2.85rem] lg:leading-[1.1];
+  @apply font-serif text-[1.65rem] font-medium leading-[1.14] tracking-[-0.025em] text-balance text-brand-charcoal sm:text-3xl sm:leading-[1.12] md:text-4xl lg:text-[2.85rem] lg:leading-[1.1];
 }
 
 @utility heading-card {
@@ -188,14 +293,35 @@
    * Homepage hero — anchor sacred architecture on the right;
    * frame scale-back reduces aggressive object-cover crop.
    */
+  @media (width >= 640px) {
+    .gutter-x {
+      padding-left: max(1.5rem, env(safe-area-inset-left, 0px));
+      padding-right: max(1.5rem, env(safe-area-inset-right, 0px));
+    }
+  }
+
+  @media (width >= 1024px) {
+    .gutter-x {
+      padding-left: max(2rem, env(safe-area-inset-left, 0px));
+      padding-right: max(2rem, env(safe-area-inset-right, 0px));
+    }
+  }
+
+  @media (width >= 1536px) {
+    .gutter-x {
+      padding-left: max(3rem, env(safe-area-inset-left, 0px));
+      padding-right: max(3rem, env(safe-area-inset-right, 0px));
+    }
+  }
+
   .hero-image-frame {
-    transform: scale(0.98);
+    transform: scale(1);
     transform-origin: 90% 44%;
   }
 
   @media (width >= 480px) {
     .hero-image-frame {
-      transform: scale(0.985);
+      transform: scale(1);
       transform-origin: 86% 44%;
     }
   }
@@ -355,14 +481,24 @@
 
   .nav-brand-tagline {
     line-height: 1.55;
-    letter-spacing: 0.26em;
-    max-width: 14rem;
+    letter-spacing: 0.2em;
+    max-width: 11.5rem;
+    text-wrap: balance;
+  }
+
+  @media (width >= 400px) {
+    .nav-brand-tagline {
+      max-width: 13rem;
+      letter-spacing: 0.24em;
+    }
   }
 
   @media (width >= 640px) {
     .nav-brand-tagline {
       max-width: none;
+      letter-spacing: 0.26em;
       white-space: nowrap;
+      text-wrap: nowrap;
     }
   }
 
@@ -1330,5 +1466,135 @@
       transparent 45%,
       rgb(8 8 10 / 0.15) 100%
     );
+  }
+
+  /* Homepage & collection-page cards — mobile readability (desktop unchanged) */
+  @media (width < 640px) {
+    .collection-card-mobile-scrim {
+      background: linear-gradient(
+        to top,
+        rgb(6 6 8 / 0.94) 0%,
+        rgb(6 6 8 / 0.82) 18%,
+        rgb(6 6 8 / 0.58) 38%,
+        rgb(6 6 8 / 0.28) 56%,
+        transparent 78%
+      );
+    }
+
+    .collection-card-mobile-scrim--left {
+      background: linear-gradient(
+          to top,
+          rgb(6 6 8 / 0.94) 0%,
+          rgb(6 6 8 / 0.8) 22%,
+          rgb(6 6 8 / 0.48) 42%,
+          transparent 72%
+        ),
+        linear-gradient(
+          to right,
+          rgb(4 4 6 / 0.72) 0%,
+          rgb(4 4 6 / 0.38) 42%,
+          transparent 68%
+        );
+    }
+
+    .collection-card-mobile-scrim--right {
+      background: linear-gradient(
+          to top,
+          rgb(6 6 8 / 0.94) 0%,
+          rgb(6 6 8 / 0.8) 22%,
+          rgb(6 6 8 / 0.48) 42%,
+          transparent 72%
+        ),
+        linear-gradient(
+          to left,
+          rgb(4 4 6 / 0.72) 0%,
+          rgb(4 4 6 / 0.38) 42%,
+          transparent 68%
+        );
+    }
+
+    .collection-panel-depth {
+      background: linear-gradient(
+        0deg,
+        rgb(6 6 8 / 0.58) 0%,
+        rgb(6 6 8 / 0.32) 32%,
+        rgb(6 6 8 / 0.1) 52%,
+        transparent 70%
+      );
+    }
+
+    .collection-panel-vignette {
+      background: radial-gradient(
+        ellipse 130% 110% at 50% 100%,
+        rgb(4 4 6 / 0.42) 0%,
+        transparent 58%
+      );
+    }
+
+    /* Destination / editorial image cards — centered, equal horizontal inset */
+    .editorial-image-stack > * {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      margin-inline: auto;
+    }
+
+    .editorial-image-stack .destination-panel-link,
+    .editorial-panel-slot.destination-panel-link {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .journey-panels-section [class*="gutter-x"],
+    .featured-departure-section [class*="gutter-x"],
+    .cinematic-spread-section [class*="gutter-x"] {
+      padding-left: max(1rem, env(safe-area-inset-left, 0px));
+      padding-right: max(1rem, env(safe-area-inset-right, 0px));
+    }
+  }
+
+  /*
+   * Collection pages — desktop vertical rhythm (sikh-heritage & peers)
+   * Tiered section gaps · no CTA inset stack · moderated max whitespace
+   */
+  @media (width >= 1024px) {
+    .collection-editorial-flow > section + section {
+      padding-top: var(--spacing-collection-gap-lg);
+    }
+
+    .collection-editorial-flow > section:first-child + section {
+      padding-top: var(--spacing-collection-gap-major-lg);
+    }
+
+    .collection-editorial-flow > .collection-intro-section + .featured-departure-section {
+      padding-top: var(--spacing-collection-gap-major-lg);
+    }
+
+    .collection-editorial-flow > .experience-grid-section + .cinematic-spread-section,
+    .collection-editorial-flow > .cinematic-spread-section + .luxury-cta-section {
+      padding-top: var(--spacing-collection-gap-panel-lg);
+    }
+
+    .collection-editorial-flow > section:last-child {
+      padding-bottom: var(--spacing-collection-gap-lg);
+    }
+
+    .collection-editorial-flow .collection-block-gap {
+      margin-top: var(--spacing-collection-block-lg);
+    }
+
+    .collection-editorial-flow .collection-prose-stack {
+      margin-top: var(--spacing-collection-block-lg);
+    }
+
+    .collection-editorial-flow .featured-departure-card-slot {
+      margin-top: var(--spacing-collection-block-lg);
+    }
+
+    /* CTA: one transition gap above (flow); band breathing below only */
+    .collection-editorial-flow > .luxury-cta-section {
+      padding-bottom: var(--spacing-collection-cta-inset-lg);
+    }
   }
 }

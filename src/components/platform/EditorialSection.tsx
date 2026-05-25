@@ -16,8 +16,13 @@ export function EditorialSection({
   variant = "pearl",
 }: EditorialSectionProps) {
   return (
-    <SectionContainer variant={variant} paddedTop={false} atmosphere={false}>
-      <div className="mx-auto max-w-3xl">
+    <SectionContainer
+      variant={variant}
+      paddedTop={false}
+      atmosphere={false}
+      className="collection-intro-section"
+    >
+      <div className="mx-auto w-full min-w-0 max-w-3xl">
         <Reveal>
           <p className="eyebrow">{eyebrow}</p>
           <h2 className="heading-section collection-heading">{title}</h2>

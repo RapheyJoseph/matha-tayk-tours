@@ -38,7 +38,7 @@ export function TestimonialsSection() {
 
   return (
     <SectionContainer id="stories" variant="night" paddedTop={false}>
-      <div className="relative z-[1] flex flex-col justify-between gap-8 lg:flex-row lg:items-end lg:gap-10">
+      <div className="editorial-intro-row relative z-[1] lg:flex-row lg:items-end lg:justify-between">
         <Reveal className="max-w-xl">
           <p className="eyebrow">Traveller stories</p>
           <h2 className="heading-section home-heading">

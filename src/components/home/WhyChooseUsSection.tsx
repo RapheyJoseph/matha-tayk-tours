@@ -20,10 +20,10 @@ export function WhyChooseUsSection() {
     <SectionContainer id="why-us" variant="nightSoft" paddedTop>
       <Reveal className="max-w-2xl">
         <p className="eyebrow">Why Matha Tayk</p>
-        <h2 className="heading-section mt-6">
+        <h2 className="heading-section editorial-heading">
           A studio for spiritual travel—not a catalogue of packages.
         </h2>
-        <p className="body-lead mt-8 max-w-xl">
+        <p className="body-lead editorial-lead-gap max-w-xl">
           We believe heritage travel should feel like entering a quiet gallery:
           curated lighting, generous space, and guides who know when to speak—and
           when to step aside.
@@ -31,7 +31,7 @@ export function WhyChooseUsSection() {
       </Reveal>
 
       <motion.div
-        className="mt-20 grid gap-8 sm:gap-9 md:grid-cols-2 xl:grid-cols-4"
+        className="editorial-card-grid editorial-block-gap md:grid-cols-2 xl:grid-cols-4"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-10%" }}
@@ -44,7 +44,7 @@ export function WhyChooseUsSection() {
               key={item.title}
               variants={slideUp}
               className={cn(
-                "editorial-card flex flex-col rounded-2xl p-9 sm:p-10",
+                "editorial-card flex flex-col rounded-2xl p-6 sm:p-10",
               )}
             >
               <div className="flex size-12 items-center justify-center rounded-xl border border-brand-charcoal/[0.06] bg-brand-warm">

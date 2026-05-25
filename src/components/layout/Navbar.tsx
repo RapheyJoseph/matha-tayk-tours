@@ -13,22 +13,22 @@ export function Navbar() {
   const scrolled = useScrolled(24);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-5 sm:px-6 lg:px-8">
+    <header className="fixed inset-x-0 top-0 z-50 px-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] pt-[max(0.75rem,env(safe-area-inset-top))] sm:px-6 lg:px-8">
       <div
         className={cn(
           "mx-auto max-w-[1440px] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
           scrolled
-            ? "glass-nav rounded-2xl px-6 py-4 sm:px-7"
-            : "glass-nav-rest rounded-2xl px-4 py-3 sm:px-5",
+            ? "glass-nav rounded-2xl px-4 py-3.5 sm:px-6 sm:py-4 lg:px-7"
+            : "glass-nav-rest rounded-2xl px-3 py-2.5 sm:px-5 sm:py-3",
         )}
       >
         <nav
-          className="flex min-h-[3.5rem] items-center justify-between gap-6 sm:min-h-[3.75rem] sm:gap-8 lg:gap-10"
+          className="flex min-h-[3.25rem] min-w-0 items-center justify-between gap-3 sm:min-h-[3.75rem] sm:gap-6 lg:gap-10"
           aria-label="Primary"
         >
           <Link
             href="/"
-            className="nav-brand group flex shrink-0 items-center gap-3 py-0.5"
+            className="nav-brand group flex min-w-0 max-w-[calc(100%-3.5rem)] shrink items-center gap-2.5 py-0.5 sm:max-w-none sm:gap-3"
           >
             <Image
               src="/images/matha-tayk-logo.png"
@@ -36,13 +36,13 @@ export function Navbar() {
               width={96}
               height={96}
               priority
-              className="nav-brand-logo h-9 w-9 shrink-0 object-contain sm:h-[38px] sm:w-[38px] lg:h-11 lg:w-11 xl:h-12 xl:w-12"
+              className="nav-brand-logo h-8 w-8 shrink-0 object-contain min-[400px]:h-9 min-[400px]:w-9 sm:h-[38px] sm:w-[38px] lg:h-11 lg:w-11 xl:h-12 xl:w-12"
             />
-            <div className="flex min-w-0 flex-col items-start justify-center gap-2 sm:gap-2.5">
-              <span className="nav-brand-title font-serif text-[1.0625rem] text-brand-charcoal transition-colors duration-500 sm:text-lg">
+            <div className="flex min-w-0 flex-col items-start justify-center gap-1.5 sm:gap-2.5">
+              <span className="nav-brand-title truncate font-serif text-[0.95rem] text-brand-charcoal transition-colors duration-500 min-[400px]:text-[1.0625rem] sm:max-w-none sm:text-lg">
                 {siteConfig.name}
               </span>
-              <span className="nav-brand-tagline block text-[8px] font-semibold uppercase text-brand-body transition-colors duration-500 group-hover:text-brand-charcoal sm:text-[9px]">
+              <span className="nav-brand-tagline hidden text-[7px] font-semibold uppercase text-brand-body transition-colors duration-500 group-hover:text-brand-charcoal min-[380px]:block sm:text-[9px]">
                 {siteConfig.tagline}
               </span>
             </div>
@@ -53,9 +53,9 @@ export function Navbar() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="group/nav relative rounded-full px-3 py-2.5 text-[12px] font-medium tracking-[0.03em] text-brand-body transition-colors duration-500 hover:text-brand-charcoal"
+                  className="group/nav relative rounded-full px-2.5 py-2.5 text-[11px] font-medium tracking-[0.02em] text-brand-body transition-colors duration-500 hover:text-brand-charcoal 2xl:px-3 2xl:text-[12px] 2xl:tracking-[0.03em]"
                 >
-                  <span className="relative z-10">{link.label}</span>
+                  <span className="relative z-10 whitespace-nowrap">{link.label}</span>
                   <span
                     className="pointer-events-none absolute inset-x-4 bottom-2.5 h-px origin-left scale-x-0 bg-brand-gold transition-transform duration-500 ease-out group-hover/nav:scale-x-100"
                     aria-hidden

@@ -97,7 +97,7 @@ function KartarpurDestinationPanel({
             "group/kartarpur destination-kartarpur-card relative overflow-hidden rounded-[1.35rem]",
           )}
         >
-      <div className="relative aspect-[16/10] min-h-[340px] w-full overflow-hidden sm:min-h-[400px] lg:aspect-[21/10] lg:min-h-[440px] xl:min-h-[480px]">
+      <div className="relative aspect-[4/3] min-h-[240px] w-full overflow-hidden sm:aspect-[16/10] sm:min-h-[400px] lg:aspect-[21/10] lg:min-h-[440px] xl:min-h-[480px]">
         <Image
           src={place.image}
           alt={place.imageAlt}
@@ -150,7 +150,7 @@ function LahoreDestinationPanel({
             "group/lahore destination-lahore-card relative overflow-hidden rounded-[1.35rem]",
           )}
         >
-      <div className="relative aspect-[16/9] min-h-[320px] w-full overflow-hidden sm:min-h-[380px] lg:aspect-[21/9] lg:min-h-[420px] xl:min-h-[500px]">
+      <div className="relative aspect-[4/3] min-h-[240px] w-full overflow-hidden sm:aspect-[16/9] sm:min-h-[380px] lg:aspect-[21/9] lg:min-h-[420px] xl:min-h-[500px]">
         <Image
           src={place.image}
           alt={place.imageAlt}
@@ -206,7 +206,7 @@ function HasanAbdalDestinationPanel({
             "group/hasan destination-hasan-card relative overflow-hidden rounded-[1.35rem]",
           )}
         >
-      <div className="relative aspect-[16/10] min-h-[320px] w-full overflow-hidden sm:min-h-[380px] lg:aspect-[21/10] lg:min-h-[420px] xl:min-h-[460px]">
+      <div className="relative aspect-[4/3] min-h-[240px] w-full overflow-hidden sm:aspect-[16/10] sm:min-h-[380px] lg:aspect-[21/10] lg:min-h-[420px] xl:min-h-[460px]">
         <Image
           src={place.image}
           alt={place.imageAlt}
@@ -326,10 +326,10 @@ function DestinationCopy({
   groupHover: string;
 }) {
   return (
-    <div className="absolute inset-x-0 bottom-0 z-[3] flex flex-col justify-end p-9 sm:p-11 lg:p-12">
-      <div className="max-w-md">
+    <div className="absolute inset-x-0 bottom-0 z-[3] flex flex-col justify-end p-5 sm:p-11 lg:p-12">
+      <div className="w-full min-w-0 max-w-md">
         <p className="label-meta text-brand-gold-soft">{place.tag}</p>
-        <h3 className="mt-4 font-serif text-[1.9rem] leading-[1.08] tracking-[-0.025em] text-white sm:text-[2.15rem] lg:text-[2.4rem]">
+        <h3 className="mt-3 text-balance font-serif text-[1.55rem] leading-[1.08] tracking-[-0.025em] text-white sm:mt-4 sm:text-[2.15rem] lg:text-[2.4rem]">
           {place.name}
         </h3>
         <p className="mt-5 max-w-[36ch] text-[15px] leading-[1.8] text-white/93 sm:text-base">
@@ -359,20 +359,20 @@ export function DestinationsGrid() {
   return (
     <SectionContainer id="destinations" variant="pearl" paddedTop>
       <motion.div
-        className="flex flex-col gap-16 lg:flex-row lg:items-end lg:justify-between"
+        className="editorial-intro-row lg:flex-row lg:items-end lg:justify-between"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-8%" }}
         variants={staggerParent}
       >
-        <Reveal className="max-w-xl">
+        <Reveal className="w-full min-w-0 max-w-xl">
           <p className="eyebrow">Destinations</p>
-          <h2 className="heading-section mt-7">
+          <h2 className="heading-section editorial-heading text-balance">
             Landscapes etched with memory—
             <span className="block sm:inline"> revealed with scholarly grace.</span>
           </h2>
         </Reveal>
-        <Reveal variant="fade" delay={0.12} className="max-w-md lg:max-w-sm lg:text-right">
+        <Reveal variant="fade" delay={0.12} className="w-full min-w-0 max-w-md lg:max-w-sm lg:text-right">
           <p className="body-copy sm:text-[15px]">
             Each frame is a chapter we read slowly with you—never as a checklist.
             Pause, listen, return; the story deepens every time.
@@ -381,7 +381,7 @@ export function DestinationsGrid() {
       </motion.div>
 
       <motion.div
-        className="mt-20 grid items-stretch gap-7 sm:grid-cols-2 sm:gap-8 xl:grid-cols-6 xl:gap-7 [&>*]:min-h-0"
+        className="editorial-card-grid editorial-block-gap grid items-stretch sm:grid-cols-2 xl:grid-cols-6 [&>*]:min-h-0"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-8%" }}

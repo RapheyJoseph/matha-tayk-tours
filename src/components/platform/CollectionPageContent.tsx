@@ -22,7 +22,7 @@ export function CollectionPageContent({
   collection,
 }: CollectionPageContentProps) {
   return (
-    <div className="collection-editorial-flow">
+    <div className="collection-editorial-flow min-w-0 overflow-x-clip">
       <CollectionHero collection={collection} />
       <EditorialSection
         eyebrow={collection.introduction.eyebrow}

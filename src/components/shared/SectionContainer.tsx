@@ -77,14 +77,15 @@ export function SectionContainer({
         "relative overflow-hidden",
         variantStyles[variant],
         paddedTop && "section-y",
-        id && "scroll-mt-32",
+        id &&
+          "scroll-mt-[calc(7.5rem+env(safe-area-inset-top,0px))] sm:scroll-mt-32",
         className,
       )}
     >
       {atmosphere ? <SectionAtmosphere variant={variant} /> : null}
       <div
         className={cn(
-          "relative z-10 mx-auto w-full max-w-[1440px] gutter-x",
+          "relative z-10 mx-auto w-full min-w-0 max-w-[1440px] gutter-x",
           innerClassName,
         )}
       >

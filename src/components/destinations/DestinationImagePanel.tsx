@@ -16,10 +16,10 @@ export function DestinationImagePanel({ section }: DestinationImagePanelProps) {
   const reduceMotion = useReducedMotionAfterHydration();
 
   return (
-    <SectionContainer variant="night" paddedTop className="!pb-0">
+    <SectionContainer variant="night" paddedTop={false} className="!pb-0">
       <Reveal>
         <div className="destination-cinematic-panel group/panel relative overflow-hidden rounded-[1.25rem] bg-brand-charcoal">
-          <div className="relative aspect-[16/10] min-h-[280px] w-full sm:min-h-[360px] lg:aspect-[21/9] lg:min-h-[420px]">
+          <div className="relative aspect-[4/3] min-h-[220px] w-full sm:aspect-[16/10] sm:min-h-[360px] lg:aspect-[21/9] lg:min-h-[420px]">
             <motion.div
               className="absolute inset-0"
               initial={false}
@@ -51,14 +51,14 @@ export function DestinationImagePanel({ section }: DestinationImagePanelProps) {
               aria-hidden
             />
           </div>
-          <div className="border-t border-brand-charcoal/[0.06] bg-brand-white px-8 py-8 sm:px-10 sm:py-9 lg:px-12">
+          <div className="border-t border-brand-charcoal/[0.06] bg-brand-white px-5 py-6 sm:px-10 sm:py-9 lg:px-12">
             {section.eyebrow ? (
               <p className="label-meta">{section.eyebrow}</p>
             ) : null}
             <p
               className={cn(
-                "font-serif text-lg leading-[1.45] tracking-[-0.015em] text-brand-charcoal sm:text-xl",
-                section.eyebrow && "mt-4",
+                "text-pretty font-serif text-base leading-[1.45] tracking-[-0.015em] text-brand-charcoal sm:text-lg lg:text-xl",
+                section.eyebrow && "editorial-prose-gap",
               )}
             >
               {section.caption}

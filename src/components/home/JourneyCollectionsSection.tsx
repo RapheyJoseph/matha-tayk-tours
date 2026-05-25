@@ -19,20 +19,20 @@ export function JourneyCollectionsSection() {
   return (
     <SectionContainer id="collections" variant="night" paddedTop={false}>
       <motion.div
-        className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-10"
+        className="editorial-intro-row lg:flex-row lg:items-end lg:justify-between"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-8%" }}
         variants={staggerParent}
       >
-        <Reveal className="max-w-xl">
+        <Reveal className="w-full min-w-0 max-w-xl">
           <p className="eyebrow">Curated worlds</p>
           <h2 className="heading-section home-heading">
             Four collections—
             <span className="block sm:inline"> one luxury ecosystem.</span>
           </h2>
         </Reveal>
-        <Reveal variant="fade" delay={0.1} className="max-w-md lg:text-right">
+        <Reveal variant="fade" delay={0.1} className="w-full min-w-0 max-w-md lg:text-right">
           <p className="body-copy sm:text-[15px]">
             Scroll through editorial worlds—sacred, ancient, cinematic, and
             modern. Each universe is composed privately; enter where you are

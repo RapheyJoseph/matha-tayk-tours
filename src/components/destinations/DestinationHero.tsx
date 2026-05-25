@@ -20,7 +20,7 @@ export function DestinationHero({ destination }: DestinationHeroProps) {
 
   return (
     <section
-      className="relative flex min-h-[88dvh] items-end overflow-hidden bg-brand-charcoal sm:min-h-[92dvh]"
+      className="relative flex min-h-[72svh] items-end overflow-hidden bg-brand-charcoal sm:min-h-[82svh] lg:min-h-[92dvh]"
       aria-label={`${name} hero`}
     >
       <motion.div
@@ -56,8 +56,8 @@ export function DestinationHero({ destination }: DestinationHeroProps) {
         aria-hidden
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-[1440px] gutter-x pb-28 pt-36 sm:pb-32 sm:pt-40">
-        <div className="mb-12 flex flex-wrap items-center gap-x-6 gap-y-3">
+      <div className="relative z-10 mx-auto w-full min-w-0 max-w-[1440px] gutter-x pb-20 pt-[calc(6.5rem+env(safe-area-inset-top,0px))] sm:pb-32 sm:pt-40">
+        <div className="mb-8 flex flex-wrap items-center gap-x-4 gap-y-2.5 sm:mb-12 sm:gap-x-6 sm:gap-y-3">
           <Link
             href="/#collections"
             className="destination-back-link inline-flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.28em] text-white/75 transition-colors duration-500 hover:text-white"
@@ -79,13 +79,13 @@ export function DestinationHero({ destination }: DestinationHeroProps) {
           initial={reduceMotion ? false : { opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-2xl"
+          className="w-full min-w-0 max-w-2xl"
         >
           <p className="label-meta text-brand-gold-soft">{tag}</p>
-          <h1 className="heading-display mt-6 text-[2.1rem] leading-[1.06] text-white sm:text-[2.65rem] lg:text-[3.1rem] xl:text-[3.35rem]">
+          <h1 className="heading-display mt-5 text-balance text-[1.65rem] leading-[1.06] text-white sm:mt-6 sm:text-[2.65rem] lg:text-[3.1rem] xl:text-[3.35rem]">
             {hero.headline}
           </h1>
-          <p className="mt-7 max-w-[38ch] text-base leading-[1.78] text-white/90 sm:text-[1.0625rem]">
+          <p className="mt-5 max-w-full text-pretty text-base leading-[1.78] text-white/90 sm:mt-7 sm:max-w-[38ch] sm:text-[1.0625rem]">
             {hero.subheadline}
           </p>
         </motion.div>
