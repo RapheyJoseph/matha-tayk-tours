@@ -11,7 +11,10 @@ export function ContactCtaSection() {
   return (
     <SectionContainer id="contact" variant="night" paddedTop={false}>
       <Reveal>
-        <div className="editorial-card-static relative overflow-hidden rounded-2xl px-6 py-9 sm:px-12 sm:py-12 lg:px-14 lg:py-14">
+        <div
+          data-nav-section="contact"
+          className="editorial-card-static relative overflow-hidden rounded-2xl px-6 py-9 sm:px-12 sm:py-12 lg:px-14 lg:py-14"
+        >
           <div
             className="pointer-events-none absolute inset-y-0 right-0 w-1/2 bg-[radial-gradient(circle_at_80%_20%,rgba(200,169,107,0.08),transparent_60%)]"
             aria-hidden

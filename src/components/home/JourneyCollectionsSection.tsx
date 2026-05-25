@@ -17,7 +17,12 @@ const panelAlignments: CollectionPanelAlign[] = [
 
 export function JourneyCollectionsSection() {
   return (
-    <SectionContainer id="collections" variant="night" paddedTop={false}>
+    <SectionContainer
+      id="collections"
+      variant="night"
+      paddedTop={false}
+      navSection="journeys"
+    >
       <motion.div
         className="editorial-intro-row lg:flex-row lg:items-end lg:justify-between"
         initial="hidden"

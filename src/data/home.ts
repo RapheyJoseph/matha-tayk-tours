@@ -20,12 +20,27 @@ export const heroMedia = {
     "Panoramic view of Gurdwara Darbar Sahib Kartarpur at golden hour—white marble courtyard, perimeter wall, and the main dome bathed in soft light",
 } as const;
 
+/** About section — primary nav submenu (desktop dropdown + mobile group) */
+export const aboutNavSection = {
+  label: "About",
+  links: [
+    { href: "/about", label: "About Us" },
+    { href: "/about/team", label: "Our Team" },
+  ],
+} as const;
+
 export const navLinks = [
-  { href: "/about", label: "About Us" },
   { href: "/#collections", label: "Journeys" },
   { href: "/#contact", label: "Contact" },
 ] as const;
 
+/** Flattened links for footer and other compact menus */
+export const studioNavLinks = [
+  ...aboutNavSection.links,
+  ...navLinks,
+] as const;
+
+/** Mobile hamburger menu only — not shown in desktop navbar */
 export const collectionNavLinks = [
   { href: "/collections/sikh-heritage", label: "Sikh Heritage" },
   { href: "/collections/buddhist-journeys", label: "Buddhist Heritage" },

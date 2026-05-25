@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { collectionNavLinks, navLinks, siteConfig } from "@/data/home";
+import { collectionNavLinks, siteConfig, studioNavLinks } from "@/data/home";
 
 const footerColumns = [
   {
@@ -10,7 +10,7 @@ const footerColumns = [
   },
   {
     title: "Support",
-    links: [...navLinks],
+    links: [...studioNavLinks],
   },
 ] as const;
 

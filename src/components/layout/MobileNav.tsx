@@ -12,11 +12,14 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import Link from "next/link";
-import { collectionNavLinks, navLinks } from "@/data/home";
+import { aboutNavSection, collectionNavLinks, navLinks } from "@/data/home";
 import { cn } from "@/lib/utils";
 
 const navLinkClass =
   "block rounded-xl border border-brand-charcoal/[0.06] bg-brand-warm px-4 py-3.5 text-[15px] font-medium leading-snug text-pretty text-brand-charcoal transition-colors hover:bg-brand-white";
+
+const navSubLinkClass =
+  "block rounded-xl border border-brand-charcoal/[0.05] bg-brand-white/60 px-4 py-3 text-[14px] font-medium leading-snug text-pretty text-brand-charcoal/95 transition-colors hover:border-brand-charcoal/[0.08] hover:bg-brand-white";
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
@@ -82,7 +85,32 @@ export function MobileNav() {
               </div>
             </div>
             <div>
-              <p className="label-meta px-1 text-[9px]">Studio</p>
+              <p className="label-meta px-1 text-[9px]">{aboutNavSection.label}</p>
+              <div className="mt-3 flex flex-col gap-2">
+                {aboutNavSection.links.map((link, i) => (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      delay: 0.04 * (i + collectionNavLinks.length) + 0.12,
+                      duration: 0.38,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                  >
+                    <Link
+                      href={link.href}
+                      onClick={() => setOpen(false)}
+                      className={navSubLinkClass}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+            <div>
+              <p className="label-meta px-1 text-[9px]">Plan</p>
               <div className="mt-3 flex flex-col gap-2">
                 {navLinks.map((link, i) => (
                   <motion.div
@@ -90,7 +118,10 @@ export function MobileNav() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{
-                      delay: 0.04 * (i + collectionNavLinks.length) + 0.12,
+                      delay:
+                        0.04 *
+                          (i + collectionNavLinks.length + aboutNavSection.links.length) +
+                        0.16,
                       duration: 0.38,
                       ease: [0.16, 1, 0.3, 1],
                     }}

@@ -10,6 +10,8 @@ const variantStyles = {
 
 export type SectionVariant = keyof typeof variantStyles;
 
+export type NavScrollSection = "journeys" | "contact";
+
 interface SectionContainerProps {
   id?: string;
   as?: "section" | "div";
@@ -19,6 +21,8 @@ interface SectionContainerProps {
   children: ReactNode;
   paddedTop?: boolean;
   atmosphere?: boolean;
+  /** Enables scroll-aware desktop nav highlighting on editorial pages */
+  navSection?: NavScrollSection;
 }
 
 function SectionAtmosphere({ variant }: { variant: SectionVariant }) {
@@ -69,10 +73,12 @@ export function SectionContainer({
   children,
   paddedTop = true,
   atmosphere = true,
+  navSection,
 }: SectionContainerProps) {
   return (
     <Component
       id={id}
+      data-nav-section={navSection}
       className={cn(
         "relative overflow-hidden",
         variantStyles[variant],

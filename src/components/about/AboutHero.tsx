@@ -5,14 +5,26 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { useReducedMotionAfterHydration } from "@/hooks/useReducedMotionAfterHydration";
-import type { aboutPage } from "@/data/about";
 import { cn } from "@/lib/utils";
 
+export type AboutHeroContent = {
+  eyebrow: string;
+  headline: string;
+  subheadline: string;
+  image: string;
+  imageAlt: string;
+  objectPosition: string;
+};
+
 interface AboutHeroProps {
-  hero: (typeof aboutPage)["hero"];
+  hero: AboutHeroContent;
+  backLink?: { href: string; label: string };
 }
 
-export function AboutHero({ hero }: AboutHeroProps) {
+export function AboutHero({
+  hero,
+  backLink = { href: "/", label: "Home" },
+}: AboutHeroProps) {
   const reduceMotion = useReducedMotionAfterHydration();
 
   return (
@@ -64,11 +76,11 @@ export function AboutHero({ hero }: AboutHeroProps) {
 
       <div className="relative z-10 mx-auto w-full min-w-0 max-w-[1440px] gutter-x pb-6 pt-[calc(6.5rem+env(safe-area-inset-top,0px))] sm:pb-10 sm:pt-36 lg:pb-12 lg:pt-40">
         <Link
-          href="/"
+          href={backLink.href}
           className="destination-back-link mb-8 inline-flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.28em] text-white/75 transition-colors duration-500 hover:text-white sm:mb-10"
         >
           <ArrowLeft className="size-3.5" aria-hidden />
-          Home
+          {backLink.label}
         </Link>
 
         <motion.div

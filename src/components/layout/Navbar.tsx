@@ -2,15 +2,38 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { MobileNav } from "@/components/layout/MobileNav";
-import { collectionNavLinks, navLinks, siteConfig } from "@/data/home";
+import { NavAboutMenu } from "@/components/layout/NavAboutMenu";
+import { navLinks, siteConfig } from "@/data/home";
+import { useScrollNavSection } from "@/hooks/useScrollNavSection";
 import { useScrolled } from "@/hooks/useScrolled";
+import {
+  isAboutNavActive,
+  isDesktopNavLinkActive,
+} from "@/lib/nav-active";
 import { cn } from "@/lib/utils";
+
+const SCROLL_NAV_PATHS = ["/"] as const;
 
 export function Navbar() {
   const scrolled = useScrolled(24);
+  const pathname = usePathname();
+  const [hash, setHash] = useState("");
+  const scrollNavEnabled = SCROLL_NAV_PATHS.includes(
+    pathname as (typeof SCROLL_NAV_PATHS)[number],
+  );
+  const scrollSection = useScrollNavSection(scrollNavEnabled);
+
+  useEffect(() => {
+    const syncHash = () => setHash(window.location.hash);
+    syncHash();
+    window.addEventListener("hashchange", syncHash);
+    return () => window.removeEventListener("hashchange", syncHash);
+  }, [pathname]);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] pt-[max(0.75rem,env(safe-area-inset-top))] sm:px-6 lg:px-8">
@@ -18,17 +41,17 @@ export function Navbar() {
         className={cn(
           "mx-auto max-w-[1440px] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
           scrolled
-            ? "glass-nav rounded-2xl px-4 py-3.5 sm:px-6 sm:py-4 lg:px-7"
-            : "glass-nav-rest rounded-2xl px-3 py-2.5 sm:px-5 sm:py-3",
+            ? "glass-nav rounded-2xl px-4 py-2.5 sm:px-5 sm:py-3 lg:px-6 lg:py-3"
+            : "glass-nav-rest rounded-2xl px-3 py-2 sm:px-4 sm:py-2.5 lg:px-5 lg:py-2.5",
         )}
       >
         <nav
-          className="flex min-h-[3.25rem] min-w-0 items-center justify-between gap-3 sm:min-h-[3.75rem] sm:gap-6 lg:gap-10"
+          className="flex min-h-[2.875rem] min-w-0 items-center justify-between gap-3 sm:min-h-[3.125rem] sm:gap-5 lg:grid lg:min-h-[3.25rem] lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:items-center lg:gap-x-6 xl:gap-x-8"
           aria-label="Primary"
         >
           <Link
             href="/"
-            className="nav-brand group flex min-w-0 max-w-[calc(100%-3.5rem)] shrink items-center gap-2.5 py-0.5 sm:max-w-none sm:gap-3"
+            className="nav-brand group flex min-w-0 max-w-[calc(100%-3.5rem)] shrink items-center gap-2 py-0.5 sm:max-w-none sm:gap-2.5 lg:justify-self-start"
           >
             <Image
               src="/images/matha-tayk-logo.png"
@@ -36,9 +59,9 @@ export function Navbar() {
               width={96}
               height={96}
               priority
-              className="nav-brand-logo h-8 w-8 shrink-0 object-contain min-[400px]:h-9 min-[400px]:w-9 sm:h-[38px] sm:w-[38px] lg:h-11 lg:w-11 xl:h-12 xl:w-12"
+              className="nav-brand-logo h-8 w-8 shrink-0 object-contain min-[400px]:h-9 min-[400px]:w-9 sm:h-9 sm:w-9 lg:h-10 lg:w-10 xl:h-[2.625rem] xl:w-[2.625rem]"
             />
-            <div className="flex min-w-0 flex-col items-start justify-center gap-1.5 sm:gap-2.5">
+            <div className="flex min-w-0 flex-col items-start justify-center gap-1 sm:gap-1.5">
               <span className="nav-brand-title truncate font-serif text-[0.95rem] text-brand-charcoal transition-colors duration-500 min-[400px]:text-[1.0625rem] sm:max-w-none sm:text-lg">
                 {siteConfig.name}
               </span>
@@ -48,53 +71,41 @@ export function Navbar() {
             </div>
           </Link>
 
-          <ul className="hidden items-center gap-0.5 2xl:flex">
-            {collectionNavLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="group/nav relative rounded-full px-2.5 py-2.5 text-[11px] font-medium tracking-[0.02em] text-brand-body transition-colors duration-500 hover:text-brand-charcoal 2xl:px-3 2xl:text-[12px] 2xl:tracking-[0.03em]"
-                >
-                  <span className="relative z-10 whitespace-nowrap">{link.label}</span>
-                  <span
-                    className="pointer-events-none absolute inset-x-4 bottom-2.5 h-px origin-left scale-x-0 bg-brand-gold transition-transform duration-500 ease-out group-hover/nav:scale-x-100"
-                    aria-hidden
-                  />
-                </Link>
-              </li>
-            ))}
+          <ul className="hidden items-center lg:flex lg:justify-self-center lg:gap-0">
+            <NavAboutMenu active={isAboutNavActive(pathname)} />
+            {navLinks.map((link) => {
+              const active = isDesktopNavLinkActive(
+                link.href,
+                pathname,
+                hash,
+                scrollSection,
+                scrollNavEnabled,
+              );
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="nav-desktop-link inline-flex items-center rounded-full px-3.5 py-2 xl:px-4"
+                    data-active={active ? "true" : undefined}
+                    aria-current={active ? "page" : undefined}
+                  >
+                    <span className="relative z-[1]">{link.label}</span>
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
 
-          <ul className="hidden items-center gap-0.5 lg:flex 2xl:gap-1">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="group/nav relative rounded-full px-4 py-2.5 text-[13px] font-medium tracking-[0.03em] text-brand-body transition-colors duration-500 hover:text-brand-charcoal xl:px-5"
-                >
-                  <span className="relative z-10">{link.label}</span>
-                  <span
-                    className="pointer-events-none absolute inset-x-5 bottom-2.5 h-px origin-left scale-x-0 bg-brand-gold transition-transform duration-500 ease-out group-hover/nav:scale-x-100"
-                    aria-hidden
-                  />
-                </Link>
-              </li>
-            ))}
-          </ul>
-
-          <motion.div
-            className="flex shrink-0 items-center gap-3"
-            whileHover={{ scale: 1 }}
-          >
+          <div className="flex shrink-0 items-center gap-2.5 lg:justify-self-end lg:gap-3">
             <Button
               asChild
               size="default"
-              className="hidden shadow-[0_12px_36px_-10px_rgba(200,169,107,0.48)] lg:inline-flex"
+              className="nav-desktop-cta hidden lg:inline-flex"
             >
               <Link href="/#contact">Plan Your Journey</Link>
             </Button>
             <MobileNav />
-          </motion.div>
+          </div>
         </nav>
 
         <AnimatePresence>
