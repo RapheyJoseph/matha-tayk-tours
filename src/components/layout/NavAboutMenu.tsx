@@ -48,10 +48,19 @@ export function NavAboutMenu({ active: activeOverride }: NavAboutMenuProps = {})
     close();
   }, [pathname, close]);
 
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") close();
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open, close]);
+
   return (
     <li
       ref={rootRef}
-      className="relative"
+      className="nav-about-menu relative"
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
@@ -59,10 +68,10 @@ export function NavAboutMenu({ active: activeOverride }: NavAboutMenuProps = {})
         type="button"
         id={`${menuId}-trigger`}
         aria-expanded={open}
-        aria-haspopup="true"
+        aria-haspopup="menu"
         aria-controls={`${menuId}-menu`}
         onClick={() => setOpen((value) => !value)}
-        className={triggerClass}
+        className={cn(triggerClass, "pointer-events-auto")}
         data-active={isAboutActive ? "true" : undefined}
         aria-current={isAboutActive ? "true" : undefined}
       >
@@ -80,21 +89,22 @@ export function NavAboutMenu({ active: activeOverride }: NavAboutMenuProps = {})
         {open && (
           <motion.div
             id={`${menuId}-menu`}
-            role="region"
+            role="menu"
             aria-labelledby={`${menuId}-trigger`}
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 6 }}
-            transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute left-0 top-full z-50 pt-2.5"
+            exit={{ opacity: 0, y: 8 }}
+            transition={{ duration: 0.34, ease: [0.16, 1, 0.3, 1] }}
+            className="nav-about-dropdown pointer-events-auto absolute left-0 top-full z-[60] pt-2"
           >
-            <ul className="nav-about-panel">
+            <ul className="nav-about-panel glass-surface" role="none">
               {aboutNavSection.links.map((link) => {
                 const active = pathname === link.href;
                 return (
                   <li key={link.href}>
                     <Link
                       href={link.href}
+                      role="menuitem"
                       onClick={close}
                       className={cn(linkClass, active && "bg-brand-warm/90 text-brand-charcoal")}
                       aria-current={active ? "page" : undefined}

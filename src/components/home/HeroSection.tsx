@@ -14,16 +14,11 @@ export function HeroSection() {
 
   return (
     <section
-      className="relative flex min-h-[100svh] items-end overflow-hidden bg-brand-pearl pb-20 pt-[calc(7.5rem+env(safe-area-inset-top,0px))] sm:items-center sm:pb-28 sm:pt-44 md:pt-48 lg:pb-32 lg:pt-52"
+      className="relative flex min-h-[100svh] items-end overflow-hidden bg-[#c8d4e0] pb-20 pt-[calc(7.5rem+env(safe-area-inset-top,0px))] sm:items-center sm:pb-28 sm:pt-44 md:pt-48 lg:pb-32 lg:pt-52"
       aria-label="Hero"
     >
-      <motion.div
-        className="absolute inset-0 overflow-hidden"
-        initial={reduceMotion ? false : { scale: 1.008 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 2.2, ease: [0.16, 1, 0.3, 1] }}
-      >
-        <div className="hero-image-frame absolute inset-0">
+      <div className="hero-media-canvas" aria-hidden>
+        <div className="hero-image-frame">
           <Image
             src={heroMedia.image}
             alt={heroMedia.imageAlt}
@@ -31,13 +26,14 @@ export function HeroSection() {
             priority
             quality={85}
             className={cn(
-              "hero-image-focal object-cover brightness-[1.02] saturate-[1.06] contrast-[1.04]",
+              "hero-image-focal object-cover brightness-[1.03] saturate-[1.06] contrast-[1.05]",
               !reduceMotion && "hero-ken-gentle",
             )}
+            style={{ objectPosition: heroMedia.objectPosition }}
             sizes="100vw"
           />
         </div>
-      </motion.div>
+      </div>
 
       <motion.div
         className="hero-atmosphere-base pointer-events-none absolute inset-0"
@@ -55,20 +51,11 @@ export function HeroSection() {
         transition={{ duration: 1.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
       />
 
-      <motion.div
-        className="pointer-events-none absolute inset-y-0 left-0 w-[min(100%,52rem)] bg-[radial-gradient(ellipse_80%_70%_at_0%_50%,rgb(255_255_255/0.55),transparent_72%)]"
-        aria-hidden
-        initial={reduceMotion ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-      />
+      <div className="hero-copy-veil pointer-events-none absolute inset-0" aria-hidden />
 
-      <motion.div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-brand-pearl/90 via-brand-pearl/30 to-transparent sm:h-48"
+      <div
+        className="hero-edge-fade pointer-events-none absolute inset-x-0 bottom-0 h-32 sm:h-36"
         aria-hidden
-        initial={reduceMotion ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
       />
 
       <motion.div
@@ -83,16 +70,21 @@ export function HeroSection() {
           animate="visible"
           variants={staggerParent}
         >
+          <motion.p variants={slideUp} className="eyebrow">
+            Enter Curated
+          </motion.p>
           <motion.h1
             variants={slideUp}
-            className="heading-display w-full max-w-[19rem] text-balance text-[1.75rem] leading-[1.08] min-[400px]:max-w-[21rem] min-[400px]:text-[1.85rem] sm:max-w-[25rem] sm:text-[2.25rem] md:max-w-[27rem] md:text-[2.55rem] lg:max-w-[29rem] lg:text-[2.85rem] xl:max-w-[31rem] xl:text-[3.15rem] xl:leading-[1.05]"
+            className="heading-display mt-4 w-full max-w-[19rem] text-balance text-[1.75rem] leading-[1.08] min-[400px]:max-w-[21rem] min-[400px]:text-[1.85rem] sm:mt-5 sm:max-w-[25rem] sm:text-[2.25rem] md:max-w-[27rem] md:text-[2.55rem] lg:max-w-[29rem] lg:text-[2.85rem] xl:max-w-[31rem] xl:text-[3.15rem] xl:leading-[1.05]"
           >
-            <span className="block">Enter Curated</span>
-            <span className="mt-1 block sm:mt-1.5">Sacred Worlds</span>
-            <span className="mt-3 block text-[0.92em] font-normal leading-[1.12] text-brand-charcoal/88 sm:mt-4">
-              Cinematic journeys across heritage, faith, and landscape
-            </span>
+            Sacred Worlds
           </motion.h1>
+          <motion.p
+            variants={slideUp}
+            className="heading-display mt-3 max-w-[22ch] text-pretty text-[1.05rem] font-normal leading-[1.2] tracking-[-0.02em] text-brand-charcoal/90 sm:mt-4 sm:max-w-[26ch] sm:text-[1.125rem] md:max-w-[28ch]"
+          >
+            Cinematic journeys across heritage, faith, and landscape
+          </motion.p>
           <motion.p
             variants={slideUp}
             className="body-lead prose-editorial editorial-lead-gap max-w-[36ch] text-pretty sm:max-w-none"

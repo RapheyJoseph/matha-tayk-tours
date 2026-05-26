@@ -1,6 +1,17 @@
 export const siteConfig = {
   name: "Matha Tayk Tours",
   tagline: "Luxury Heritage & Cultural Journeys",
+  logo: {
+    src: "/images/matha-tayk-logo.png",
+    alt: "Matha Tayk Tours logo",
+    width: 1024,
+    height: 1024,
+    sizes: {
+      nav: "38px",
+      footer: "48px",
+      mobile: "40px",
+    },
+  },
   /** Fixed at build time — avoids rare SSR/client year boundary mismatches in footer */
   copyrightYear: 2026,
   email: "contact@mttours.travel",
@@ -14,10 +25,11 @@ export const siteConfig = {
 } as const;
 
 export const heroMedia = {
-  /** Authentic panoramic — Gurdwara Darbar Sahib, Kartarpur (local asset) */
-  image: "/media/hero-kartarpur-panorama.png",
+  /** Homepage hero — Gurdwara Darbar Sahib, Kartarpur (editorial courtyard panorama) */
+  image: "/media/hero-home.png",
   imageAlt:
-    "Panoramic view of Gurdwara Darbar Sahib Kartarpur at golden hour—white marble courtyard, perimeter wall, and the main dome bathed in soft light",
+    "Gurdwara Darbar Sahib at golden hour—expansive white marble courtyard opening toward the main dome beneath a soft peach and blue sky",
+  objectPosition: "72% center",
 } as const;
 
 /** About section — primary nav submenu (desktop dropdown + mobile group) */

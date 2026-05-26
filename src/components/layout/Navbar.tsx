@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import { BrandLogo } from "@/components/layout/BrandLogo";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -36,32 +36,23 @@ export function Navbar() {
   }, [pathname]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] pt-[max(0.75rem,env(safe-area-inset-top))] sm:px-6 lg:px-8">
+    <header className="site-header px-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] pt-[max(0.75rem,env(safe-area-inset-top))] sm:px-6 lg:px-8">
       <div
         className={cn(
-          "mx-auto max-w-[1440px] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
-          scrolled
-            ? "glass-nav rounded-2xl px-4 py-2.5 sm:px-5 sm:py-3 lg:px-6 lg:py-3"
-            : "glass-nav-rest rounded-2xl px-3 py-2 sm:px-4 sm:py-2.5 lg:px-5 lg:py-2.5",
+          "glass-nav glass-surface mx-auto max-w-[1440px] px-4 py-2.5 sm:px-5 sm:py-3 lg:px-6 lg:py-3",
+          scrolled && "glass-nav--scrolled",
         )}
       >
         <nav
-          className="flex min-h-[2.875rem] min-w-0 items-center justify-between gap-3 sm:min-h-[3.125rem] sm:gap-5 lg:grid lg:min-h-[3.25rem] lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:items-center lg:gap-x-6 xl:gap-x-8"
+          className="flex min-h-[2.75rem] min-w-0 items-center justify-between gap-3 sm:min-h-[3rem] sm:gap-4 lg:grid lg:min-h-[3.125rem] lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:items-center lg:gap-x-6 xl:gap-x-8"
           aria-label="Primary"
         >
           <Link
             href="/"
-            className="nav-brand group flex min-w-0 max-w-[calc(100%-3.5rem)] shrink items-center gap-2 py-0.5 sm:max-w-none sm:gap-2.5 lg:justify-self-start"
+            className="nav-brand group flex min-w-0 max-w-[calc(100%-3.5rem)] shrink items-center gap-2 sm:max-w-none sm:gap-2.5 lg:justify-self-start"
           >
-            <Image
-              src="/images/matha-tayk-logo.png"
-              alt="Matha Tayk Tours logo"
-              width={96}
-              height={96}
-              priority
-              className="nav-brand-logo h-8 w-8 shrink-0 object-contain min-[400px]:h-9 min-[400px]:w-9 sm:h-9 sm:w-9 lg:h-10 lg:w-10 xl:h-[2.625rem] xl:w-[2.625rem]"
-            />
-            <div className="flex min-w-0 flex-col items-start justify-center gap-1 sm:gap-1.5">
+            <BrandLogo variant="nav" priority />
+            <div className="flex min-w-0 flex-col items-start justify-center gap-0.5 sm:gap-1">
               <span className="nav-brand-title truncate font-serif text-[0.95rem] text-brand-charcoal transition-colors duration-500 min-[400px]:text-[1.0625rem] sm:max-w-none sm:text-lg">
                 {siteConfig.name}
               </span>
@@ -71,7 +62,7 @@ export function Navbar() {
             </div>
           </Link>
 
-          <ul className="hidden items-center lg:flex lg:justify-self-center lg:gap-0">
+          <ul className="nav-desktop-links hidden items-center overflow-visible lg:flex lg:justify-self-center lg:gap-0">
             <NavAboutMenu active={isAboutNavActive(pathname)} />
             {navLinks.map((link) => {
               const active = isDesktopNavLinkActive(
@@ -115,7 +106,7 @@ export function Navbar() {
               animate={{ scaleX: 1, opacity: 1 }}
               exit={{ scaleX: 0, opacity: 0 }}
               transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-              className="pointer-events-none absolute bottom-0 left-6 right-6 h-px origin-left bg-gradient-to-r from-transparent via-brand-gold/40 to-transparent sm:left-7 sm:right-7"
+              className="pointer-events-none absolute bottom-0 left-6 right-6 z-[2] h-px origin-left bg-gradient-to-r from-transparent via-brand-gold/40 to-transparent sm:left-7 sm:right-7"
             />
           )}
         </AnimatePresence>

@@ -12,7 +12,8 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import Link from "next/link";
-import { aboutNavSection, collectionNavLinks, navLinks } from "@/data/home";
+import { BrandLogo } from "@/components/layout/BrandLogo";
+import { aboutNavSection, collectionNavLinks, navLinks, siteConfig } from "@/data/home";
 import { cn } from "@/lib/utils";
 
 const navLinkClass =
@@ -30,7 +31,7 @@ export function MobileNav() {
         <Button
           variant="secondary"
           size="icon"
-          className="lg:hidden"
+          className="nav-mobile-trigger glass-surface lg:hidden"
           aria-label="Open menu"
         >
           <Menu className="size-5" />
@@ -41,7 +42,7 @@ export function MobileNav() {
         className={cn(
           "lg:hidden",
           "flex flex-col gap-0 p-0 shadow-none",
-          "bg-brand-warm/98 backdrop-blur-xl",
+          "glass-nav-sheet glass-surface",
           "pt-[max(1.25rem,env(safe-area-inset-top,0px))]",
           "pb-[max(1.25rem,env(safe-area-inset-bottom,0px))]",
           "pl-[max(1.25rem,env(safe-area-inset-left,0px))]",
@@ -50,9 +51,22 @@ export function MobileNav() {
       >
         <div className="flex min-h-0 flex-1 flex-col">
           <SheetHeader className="shrink-0 space-y-0 pr-12 text-left">
-            <SheetTitle className="font-serif text-xl tracking-wide text-brand-charcoal">
-              Navigate
-            </SheetTitle>
+            <SheetTitle className="sr-only">Navigation menu</SheetTitle>
+            <Link
+              href="/"
+              onClick={() => setOpen(false)}
+              className="mobile-nav-brand group inline-flex min-w-0 items-center gap-3 py-0.5"
+            >
+              <BrandLogo variant="mobile" />
+              <div className="min-w-0">
+                <p className="font-serif text-lg tracking-[0.04em] text-brand-charcoal sm:text-xl">
+                  {siteConfig.name}
+                </p>
+                <p className="label-meta mt-1 text-[8px] tracking-[0.22em] text-brand-body">
+                  {siteConfig.tagline}
+                </p>
+              </div>
+            </Link>
           </SheetHeader>
 
           <nav

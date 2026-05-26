@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { MessageCircle } from "lucide-react";
+import { BrandLogo } from "@/components/layout/BrandLogo";
 import { Button } from "@/components/ui/button";
 import { collectionNavLinks, siteConfig, studioNavLinks } from "@/data/home";
 
@@ -20,16 +21,22 @@ export function Footer() {
       <div className="footer-editorial-inner safe-bottom relative z-10 mx-auto w-full min-w-0 max-w-[1440px] gutter-x py-14 sm:py-16 lg:py-[4.5rem]">
         <div className="grid min-w-0 gap-11 md:grid-cols-2 md:gap-12 lg:grid-cols-12 lg:gap-x-12 lg:gap-y-8">
           <div className="min-w-0 lg:col-span-4">
-            <Link href="/" className="inline-flex min-w-0 flex-col">
+            <Link
+              href="/"
+              className="footer-brand group inline-flex min-w-0 items-center gap-3.5 sm:gap-4"
+            >
+              <BrandLogo variant="footer" />
               <span className="font-serif text-[1.45rem] tracking-[0.06em] text-brand-charcoal sm:text-[1.65rem]">
                 {siteConfig.name}
               </span>
-              <span className="body-copy mt-6 max-w-xs leading-[1.78]">
+            </Link>
+            <div className="min-w-0">
+              <p className="body-copy mt-6 max-w-xs leading-[1.78]">
                 Curated heritage and cultural journeys across sacred landscapes—composed
                 with reverence, discretion, and the quiet confidence of a
                 private travel atelier.
-              </span>
-            </Link>
+              </p>
+            </div>
             <div className="mt-9">
               <Button asChild variant="default" size="sm">
                 <a href={siteConfig.whatsapp} target="_blank" rel="noreferrer">

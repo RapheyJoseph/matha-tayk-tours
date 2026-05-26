@@ -1,13 +1,12 @@
-import { heroMedia } from "@/data/home";
-
 export const aboutPage = {
   hero: {
     eyebrow: "About Matha Tayk",
     headline: "Where pilgrimage meets quiet excellence",
     subheadline:
       "A travel atelier devoted to sacred journeys across Pakistan—composed with reverence, discretion, and the warmth of those who understand what it means to walk in faith.",
-    image: heroMedia.image,
-    imageAlt: heroMedia.imageAlt,
+    image: "/media/hero-kartarpur-panorama.png",
+    imageAlt:
+      "Panoramic view of Gurdwara Darbar Sahib Kartarpur at golden hour—white marble courtyard, perimeter wall, and the main dome bathed in soft light",
     objectPosition: "50% 38%",
   },
   origin: {
