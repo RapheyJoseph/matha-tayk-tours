@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Compass, Hotel, Route, Sparkles } from "lucide-react";
 import { SectionContainer } from "@/components/shared/SectionContainer";
 import { Reveal } from "@/components/shared/Reveal";
+import { StaggerInView } from "@/components/shared/StaggerInView";
 import { whyChooseUs } from "@/data/home";
 import { staggerParent, slideUp } from "@/lib/motion-variants";
 import { cn } from "@/lib/utils";
@@ -30,12 +31,10 @@ export function WhyChooseUsSection() {
         </p>
       </Reveal>
 
-      <motion.div
+      <StaggerInView
         className="editorial-card-grid editorial-block-gap md:grid-cols-2 xl:grid-cols-4"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-10%" }}
         variants={staggerParent}
+        viewportMargin="-10%"
       >
         {whyChooseUs.map((item) => {
           const Icon = iconMap[item.icon];
@@ -57,7 +56,7 @@ export function WhyChooseUsSection() {
             </motion.div>
           );
         })}
-      </motion.div>
+      </StaggerInView>
     </SectionContainer>
   );
 }

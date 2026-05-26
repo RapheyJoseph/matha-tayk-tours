@@ -4,7 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
-import { useReducedMotionAfterHydration } from "@/hooks/useReducedMotionAfterHydration";
+import { useMotionHydration } from "@/hooks/useMotionHydration";
+import { motionAnimate, motionInitial } from "@/lib/motion-hydration";
 import type { CollectionPageData } from "@/data/collections";
 import { cn } from "@/lib/utils";
 
@@ -23,8 +24,8 @@ interface CollectionHeroProps {
 }
 
 export function CollectionHero({ collection }: CollectionHeroProps) {
-  const reduceMotion = useReducedMotionAfterHydration();
-  const { hero, eyebrow, title, atmosphere } = collection;
+  const { mounted, reduceMotion } = useMotionHydration();
+  const { hero, title, atmosphere } = collection;
 
   return (
     <section
@@ -33,8 +34,8 @@ export function CollectionHero({ collection }: CollectionHeroProps) {
     >
       <motion.div
         className="absolute inset-0 overflow-hidden"
-        initial={reduceMotion ? false : { scale: 1.03 }}
-        animate={{ scale: 1 }}
+        initial={motionInitial(mounted, reduceMotion, { scale: 1.03 })}
+        animate={motionAnimate(mounted, reduceMotion, { scale: 1 })}
         transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
       >
         <Image
@@ -100,13 +101,12 @@ export function CollectionHero({ collection }: CollectionHeroProps) {
         </Link>
 
         <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={motionInitial(mounted, reduceMotion, { opacity: 0, y: 18 })}
+          animate={motionAnimate(mounted, reduceMotion, { opacity: 1, y: 0 })}
           transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="collection-hero-copy w-full min-w-0 max-w-2xl"
         >
-          <p className="label-meta text-brand-gold-soft">{eyebrow}</p>
-          <h1 className="heading-display mt-5 text-balance text-[1.65rem] leading-[1.08] text-white sm:mt-6 sm:text-[2.75rem] lg:text-[3.15rem]">
+          <h1 className="heading-display text-balance text-[1.65rem] leading-[1.08] text-white sm:text-[2.75rem] lg:text-[3.15rem]">
             {hero.headline}
           </h1>
           <p className="body-lead mt-5 max-w-full text-pretty text-base leading-[1.8] text-white/92 sm:mt-6 sm:max-w-[62ch] sm:text-[1.0625rem] sm:leading-[1.82]">

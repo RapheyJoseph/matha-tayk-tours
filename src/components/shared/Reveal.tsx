@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import type { ReactNode } from "react";
-import { useReducedMotionAfterHydration } from "@/hooks/useReducedMotionAfterHydration";
+import { useMotionHydration } from "@/hooks/useMotionHydration";
+import { motionWhileInView } from "@/lib/motion-hydration";
 import { cn } from "@/lib/utils";
 import { fadeIn, slideUp } from "@/lib/motion-variants";
 
@@ -19,17 +20,17 @@ export function Reveal({
   delay = 0,
   variant = "slideUp",
 }: RevealProps) {
-  const reduceMotion = useReducedMotionAfterHydration();
+  const { mounted, reduceMotion } = useMotionHydration();
   const variants = variant === "fade" ? fadeIn : slideUp;
 
   return (
     <motion.div
       className={cn(className)}
       initial={false}
-      whileInView={reduceMotion ? undefined : "visible"}
+      whileInView={motionWhileInView(mounted, reduceMotion, "visible")}
       viewport={{ once: true, margin: "-10% 0px" }}
-      variants={reduceMotion ? undefined : variants}
-      transition={reduceMotion ? undefined : { delay }}
+      variants={mounted && !reduceMotion ? variants : undefined}
+      transition={mounted && !reduceMotion ? { delay } : undefined}
     >
       {children}
     </motion.div>

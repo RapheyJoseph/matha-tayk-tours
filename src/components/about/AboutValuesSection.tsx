@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { SectionContainer } from "@/components/shared/SectionContainer";
 import { Reveal } from "@/components/shared/Reveal";
+import { StaggerInView } from "@/components/shared/StaggerInView";
 import type { aboutPage } from "@/data/about";
 import { staggerParent, slideUp } from "@/lib/motion-variants";
 import { cn } from "@/lib/utils";
@@ -41,11 +42,8 @@ export function AboutValuesSection({ values }: AboutValuesSectionProps) {
         </p>
       </Reveal>
 
-      <motion.div
+      <StaggerInView
         className="about-card-grid about-block-gap sm:grid-cols-2 lg:grid-cols-3"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-8%" }}
         variants={staggerParent}
       >
         {values.map((item) => (
@@ -67,7 +65,7 @@ export function AboutValuesSection({ values }: AboutValuesSectionProps) {
             <p className="body-copy mt-4 leading-[1.78]">{item.description}</p>
           </motion.article>
         ))}
-      </motion.div>
+      </StaggerInView>
     </SectionContainer>
   );
 }

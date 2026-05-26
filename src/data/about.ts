@@ -225,9 +225,9 @@ role: "Director Marketing & Sales",
 philosophy:
   "Meaningful journeys begin long before departure—shaped through trust, clarity, and relationships that make every passage feel effortless.",
 
-image: "/images/banners/autumn-departures-kartarpur-nankana.webp",
-imageAlt: "Panoramic sacred corridor landscape at golden hour",
-objectPosition: "50% 45%",
+image: "/images/team/raj-rathor.png",
+imageAlt: "Portrait of Raj Rathor, Director Marketing & Sales",
+objectPosition: "50% 28%",
 
 profile: {
   paragraphs: [

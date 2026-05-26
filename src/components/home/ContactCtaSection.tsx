@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Mail, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { MotionFadeInView } from "@/components/shared/MotionFadeInView";
 import { SectionContainer } from "@/components/shared/SectionContainer";
 import { Reveal } from "@/components/shared/Reveal";
 import { siteConfig } from "@/data/home";
@@ -32,13 +32,7 @@ export function ContactCtaSection() {
                 respond with thoughtful next steps.
               </p>
             </div>
-            <motion.div
-              className="flex flex-col gap-4"
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-            >
+            <MotionFadeInView className="flex flex-col gap-4">
               <Button asChild size="lg" variant="secondary" className="w-full justify-center">
                 <a href={`mailto:${siteConfig.email}`}>
                   <span className="inline-flex items-center gap-2">
@@ -59,7 +53,7 @@ export function ContactCtaSection() {
                 Studio hours follow GMT, with coverage for North American
                 evenings by appointment.
               </p>
-            </motion.div>
+            </MotionFadeInView>
           </div>
         </div>
       </Reveal>

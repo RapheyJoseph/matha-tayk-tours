@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { Mail, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { MotionFadeInView } from "@/components/shared/MotionFadeInView";
 import { Reveal } from "@/components/shared/Reveal";
 import { siteConfig } from "@/data/home";
 import type { DestinationPageData } from "@/data/destinations";
@@ -46,13 +46,7 @@ export function DestinationClosingCta({ destination }: DestinationClosingCtaProp
             <p className="body-lead editorial-lead-gap mx-auto max-w-full text-pretty text-white/85 sm:max-w-lg">
               {cta.body}
             </p>
-            <motion.div
-              className="editorial-cta-gap flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4"
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-            >
+            <MotionFadeInView className="editorial-cta-gap flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4">
               <Button asChild size="lg" className="w-full sm:w-auto sm:min-w-[220px]">
                 <Link href="/#contact">
                   <Mail className="size-4" />
@@ -70,7 +64,7 @@ export function DestinationClosingCta({ destination }: DestinationClosingCtaProp
                   WhatsApp concierge
                 </a>
               </Button>
-            </motion.div>
+            </MotionFadeInView>
           </div>
         </Reveal>
       </div>

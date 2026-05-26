@@ -4,7 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
-import { useReducedMotionAfterHydration } from "@/hooks/useReducedMotionAfterHydration";
+import { useMotionHydration } from "@/hooks/useMotionHydration";
+import { motionAnimate, motionInitial } from "@/lib/motion-hydration";
 import { cn } from "@/lib/utils";
 
 export type AboutHeroContent = {
@@ -25,7 +26,7 @@ export function AboutHero({
   hero,
   backLink = { href: "/", label: "Home" },
 }: AboutHeroProps) {
-  const reduceMotion = useReducedMotionAfterHydration();
+  const { mounted, reduceMotion } = useMotionHydration();
 
   return (
     <section
@@ -34,8 +35,8 @@ export function AboutHero({
     >
       <motion.div
         className="absolute inset-0 overflow-hidden"
-        initial={reduceMotion ? false : { scale: 1.03 }}
-        animate={{ scale: 1 }}
+        initial={motionInitial(mounted, reduceMotion, { scale: 1.03 })}
+        animate={motionAnimate(mounted, reduceMotion, { scale: 1 })}
         transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
       >
         <Image
@@ -84,8 +85,8 @@ export function AboutHero({
         </Link>
 
         <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={motionInitial(mounted, reduceMotion, { opacity: 0, y: 18 })}
+          animate={motionAnimate(mounted, reduceMotion, { opacity: 1, y: 0 })}
           transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="collection-hero-copy w-full min-w-0 max-w-2xl lg:max-w-3xl"
         >

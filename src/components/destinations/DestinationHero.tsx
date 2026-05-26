@@ -4,7 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
-import { useReducedMotionAfterHydration } from "@/hooks/useReducedMotionAfterHydration";
+import { useMotionHydration } from "@/hooks/useMotionHydration";
+import { motionAnimate, motionInitial } from "@/lib/motion-hydration";
 import { getCollectionBySlug } from "@/data/collections";
 import type { DestinationPageData } from "@/data/destinations";
 import { cn } from "@/lib/utils";
@@ -14,7 +15,7 @@ interface DestinationHeroProps {
 }
 
 export function DestinationHero({ destination }: DestinationHeroProps) {
-  const reduceMotion = useReducedMotionAfterHydration();
+  const { mounted, reduceMotion } = useMotionHydration();
   const { hero, tag, name, collectionSlug } = destination;
   const collection = getCollectionBySlug(collectionSlug);
 
@@ -25,8 +26,8 @@ export function DestinationHero({ destination }: DestinationHeroProps) {
     >
       <motion.div
         className="absolute inset-0 overflow-hidden"
-        initial={reduceMotion ? false : { scale: 1.03 }}
-        animate={{ scale: 1 }}
+        initial={motionInitial(mounted, reduceMotion, { scale: 1.03 })}
+        animate={motionAnimate(mounted, reduceMotion, { scale: 1 })}
         transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
       >
         <Image
@@ -76,8 +77,8 @@ export function DestinationHero({ destination }: DestinationHeroProps) {
         </div>
 
         <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={motionInitial(mounted, reduceMotion, { opacity: 0, y: 18 })}
+          animate={motionAnimate(mounted, reduceMotion, { opacity: 1, y: 0 })}
           transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="w-full min-w-0 max-w-2xl"
         >

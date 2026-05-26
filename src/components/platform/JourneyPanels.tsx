@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { SectionContainer } from "@/components/shared/SectionContainer";
 import { Reveal } from "@/components/shared/Reveal";
+import { StaggerInView } from "@/components/shared/StaggerInView";
 import {
   getDestinationBySlug,
   type DestinationSlug,
@@ -42,11 +43,8 @@ export function JourneyPanels({
         </h2>
       </Reveal>
 
-      <motion.div
+      <StaggerInView
         className="editorial-image-stack collection-card-grid collection-block-gap sm:grid-cols-2"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-8%" }}
         variants={staggerParent}
       >
         {destinations.map((place) => {
@@ -115,7 +113,7 @@ export function JourneyPanels({
             </motion.div>
           );
         })}
-      </motion.div>
+      </StaggerInView>
     </SectionContainer>
   );
 }

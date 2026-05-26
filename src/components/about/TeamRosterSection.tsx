@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { SectionContainer } from "@/components/shared/SectionContainer";
 import { Reveal } from "@/components/shared/Reveal";
+import { StaggerInView } from "@/components/shared/StaggerInView";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -43,12 +44,11 @@ export function TeamRosterSection({ roster, members }: TeamRosterSectionProps) {
         <p className="body-lead about-block-gap max-w-xl">{roster.lead}</p>
       </Reveal>
 
-      <motion.ul
+      <StaggerInView
+        as="ul"
         className="team-roster-grid about-block-gap"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-6%" }}
         variants={staggerParent}
+        viewportMargin="-6%"
         role="list"
       >
         {members.map((member) => (
@@ -96,7 +96,7 @@ export function TeamRosterSection({ roster, members }: TeamRosterSectionProps) {
             </article>
           </motion.li>
         ))}
-      </motion.ul>
+      </StaggerInView>
 
       <Dialog
         open={activeMember !== null}

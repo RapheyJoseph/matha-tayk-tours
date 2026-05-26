@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { CollectionCinematicPanel } from "@/components/home/CollectionCinematicPanel";
+import { StaggerInView } from "@/components/shared/StaggerInView";
 import type { CollectionPanelAlign } from "@/components/home/CollectionCinematicPanel";
 import { SectionContainer } from "@/components/shared/SectionContainer";
 import { Reveal } from "@/components/shared/Reveal";
@@ -23,11 +24,8 @@ export function JourneyCollectionsSection() {
       paddedTop={false}
       navSection="journeys"
     >
-      <motion.div
+      <StaggerInView
         className="editorial-intro-row lg:flex-row lg:items-end lg:justify-between"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-8%" }}
         variants={staggerParent}
       >
         <Reveal className="w-full min-w-0 max-w-xl">
@@ -44,14 +42,12 @@ export function JourneyCollectionsSection() {
             called.
           </p>
         </Reveal>
-      </motion.div>
+      </StaggerInView>
 
-      <motion.div
+      <StaggerInView
         className="home-card-stack home-block-gap"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-6%" }}
         variants={staggerParent}
+        viewportMargin="-6%"
       >
         {homepageCollectionSummaries.map((collection, index) => (
           <motion.div key={collection.slug} variants={slideUp}>
@@ -62,7 +58,7 @@ export function JourneyCollectionsSection() {
             />
           </motion.div>
         ))}
-      </motion.div>
+      </StaggerInView>
     </SectionContainer>
   );
 }

@@ -187,8 +187,7 @@ export function CollectionCinematicPanel({
               isRight && "sm:ml-auto",
             )}
           >
-            <p className="label-meta text-brand-gold-soft">{collection.eyebrow}</p>
-            <h3 className="mt-3 text-balance font-serif text-[1.35rem] leading-[1.12] tracking-[-0.02em] text-white [text-shadow:0_2px_28px_rgba(0,0,0,0.55)] sm:mt-5 sm:text-[2rem] sm:leading-[1.08] md:text-[2.35rem] lg:text-[2.75rem]">
+            <h3 className="text-balance font-serif text-[1.35rem] leading-[1.12] tracking-[-0.02em] text-white [text-shadow:0_2px_28px_rgba(0,0,0,0.55)] sm:text-[2rem] sm:leading-[1.08] md:text-[2.35rem] lg:text-[2.75rem]">
               {collection.title}
             </h3>
             <p

@@ -230,8 +230,18 @@
     padding-top: var(--spacing-about-flow-base);
   }
 
+  /* Remove hero → origin spacing */
+  & > section:first-child + section {
+    padding-top: 0;
+  }
+
   & > section:last-child {
     padding-bottom: var(--spacing-about-flow-footer);
+  }
+
+  /* Remove origin → team spacing */
+  & > .about-origin-section + .about-team-roster-section {
+    padding-top: 0;
   }
 }
 
@@ -1926,6 +1936,11 @@
       padding-left: max(1rem, env(safe-area-inset-left, 0px));
       padding-right: max(1rem, env(safe-area-inset-right, 0px));
     }
+    .collection-card-grid,
+    .cinematic-spread-section .gutter-x,
+    .luxury-cta-section .gutter-x {
+      padding-bottom: 2rem;
+    }
   }
 
   /*
@@ -2043,9 +2058,7 @@
    * About page — optical chapter pacing & tone transitions
    * Not equal spacing: major pauses, tone bridges, pre-CTA exhale
    */
-  .about-editorial-flow > section:first-child + section {
-    padding-top: var(--spacing-about-flow-major);
-  }
+  
 
   .about-editorial-flow > .about-origin-section + .about-philosophy-section,
   .about-editorial-flow > .about-philosophy-section + .about-unity-section,
@@ -2129,7 +2142,7 @@
     }
 
     .about-editorial-flow > section:first-child + section {
-      padding-top: var(--spacing-about-major-lg);
+      padding-top: 0;
     }
 
     .about-editorial-flow > .about-origin-section + .about-philosophy-section,

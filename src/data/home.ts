@@ -15,7 +15,7 @@ export const siteConfig = {
   /** Fixed at build time — avoids rare SSR/client year boundary mismatches in footer */
   copyrightYear: 2026,
   email: "contact@mttours.travel",
-  phones: ["+1 214 606 7800", "+1 833 207 3324"] as const,
+  phones: ["+(234) 2856 3364", "+1 833 207 3324"] as const,
   whatsapp: "https://wa.me/442079460128",
   social: {
     instagram: "https://instagram.com",

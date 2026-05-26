@@ -4,13 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { useReducedMotionAfterHydration } from "@/hooks/useReducedMotionAfterHydration";
+import { useMotionHydration } from "@/hooks/useMotionHydration";
+import { motionAnimate, motionInitial } from "@/lib/motion-hydration";
 import { heroMedia } from "@/data/home";
 import { fadeIn, slideUp, staggerParent } from "@/lib/motion-variants";
 import { cn } from "@/lib/utils";
 
 export function HeroSection() {
-  const reduceMotion = useReducedMotionAfterHydration();
+  const { mounted, reduceMotion } = useMotionHydration();
 
   return (
     <section
@@ -38,16 +39,16 @@ export function HeroSection() {
       <motion.div
         className="hero-atmosphere-base pointer-events-none absolute inset-0"
         aria-hidden
-        initial={reduceMotion ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
+        initial={motionInitial(mounted, reduceMotion, { opacity: 0 })}
+        animate={motionAnimate(mounted, reduceMotion, { opacity: 1 })}
         transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
       />
 
       <motion.div
         className="hero-vignette pointer-events-none absolute inset-0"
         aria-hidden
-        initial={reduceMotion ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
+        initial={motionInitial(mounted, reduceMotion, { opacity: 0 })}
+        animate={motionAnimate(mounted, reduceMotion, { opacity: 1 })}
         transition={{ duration: 1.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
       />
 
@@ -60,15 +61,15 @@ export function HeroSection() {
 
       <motion.div
         className="relative z-10 mx-auto w-full min-w-0 max-w-[1440px] gutter-x"
-        initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={motionInitial(mounted, reduceMotion, { opacity: 0, y: 20 })}
+        animate={motionAnimate(mounted, reduceMotion, { opacity: 1, y: 0 })}
         transition={{ duration: 1, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
       >
         <motion.div
           className="w-full min-w-0 max-w-lg sm:max-w-xl lg:max-w-2xl"
-          initial={reduceMotion ? "visible" : "hidden"}
-          animate="visible"
-          variants={staggerParent}
+          initial={false}
+          animate={motionAnimate(mounted, reduceMotion, "visible")}
+          variants={mounted && !reduceMotion ? staggerParent : undefined}
         >
           <motion.p variants={slideUp} className="eyebrow">
             Enter Curated
@@ -120,8 +121,8 @@ export function HeroSection() {
       <motion.div
         aria-hidden
         className="pointer-events-none absolute bottom-14 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-3 sm:flex"
-        initial={{ opacity: 0, y: -8 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={motionInitial(mounted, reduceMotion, { opacity: 0, y: -8 })}
+        animate={motionAnimate(mounted, reduceMotion, { opacity: 1, y: 0 })}
         transition={{ delay: 1.4, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
       >
         <span className="label-meta text-[9px] tracking-[0.4em] text-brand-body/60">

@@ -5,7 +5,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useReducedMotionAfterHydration } from "@/hooks/useReducedMotionAfterHydration";
+import { useMotionHydration } from "@/hooks/useMotionHydration";
+import { motionWhileInView } from "@/lib/motion-hydration";
 import { Reveal } from "@/components/shared/Reveal";
 import { featuredTours } from "@/data/home";
 import { slideUp } from "@/lib/motion-variants";
@@ -29,15 +30,15 @@ interface JourneyEditorialFeatureProps {
 
 function JourneyEditorialFeature({ tour, index }: JourneyEditorialFeatureProps) {
   const imageFirst = index % 2 === 0;
-  const reduceMotion = useReducedMotionAfterHydration();
+  const { mounted, reduceMotion } = useMotionHydration();
 
   return (
     <motion.article
       className="group/journey"
-      initial={reduceMotion ? "visible" : "hidden"}
-      whileInView="visible"
+      initial={false}
+      whileInView={motionWhileInView(mounted, reduceMotion, "visible")}
       viewport={{ once: true, margin: "-6%" }}
-      variants={slideUp}
+      variants={mounted && !reduceMotion ? slideUp : undefined}
     >
       <div
         className={cn(

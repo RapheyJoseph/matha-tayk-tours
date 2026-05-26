@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { DestinationPanelLink } from "@/components/destinations/DestinationPanelLink";
 import { SectionContainer } from "@/components/shared/SectionContainer";
 import { Reveal } from "@/components/shared/Reveal";
+import { StaggerInView } from "@/components/shared/StaggerInView";
 import type { DestinationSummary } from "@/data/destinations";
 import { destinations } from "@/data/home";
 import { staggerParent, slideUp } from "@/lib/motion-variants";
@@ -358,11 +359,8 @@ export function DestinationsGrid() {
 
   return (
     <SectionContainer id="destinations" variant="pearl" paddedTop>
-      <motion.div
+      <StaggerInView
         className="editorial-intro-row lg:flex-row lg:items-end lg:justify-between"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-8%" }}
         variants={staggerParent}
       >
         <Reveal className="w-full min-w-0 max-w-xl">
@@ -378,13 +376,10 @@ export function DestinationsGrid() {
             Pause, listen, return; the story deepens every time.
           </p>
         </Reveal>
-      </motion.div>
+      </StaggerInView>
 
-      <motion.div
+      <StaggerInView
         className="editorial-card-grid editorial-block-gap grid items-stretch sm:grid-cols-2 xl:grid-cols-6 [&>*]:min-h-0"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-8%" }}
         variants={staggerParent}
       >
         <NankanaDestinationPanel place={nankana} variants={slideUp} />
@@ -392,7 +387,7 @@ export function DestinationsGrid() {
         <LahoreDestinationPanel place={lahore} variants={slideUp} />
         <HasanAbdalDestinationPanel place={hasanAbdal} variants={slideUp} />
         <EminabadDestinationPanel place={eminabad} variants={slideUp} />
-      </motion.div>
+      </StaggerInView>
     </SectionContainer>
   );
 }
