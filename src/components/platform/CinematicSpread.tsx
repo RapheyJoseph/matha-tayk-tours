@@ -12,7 +12,7 @@ interface CinematicSpreadProps {
   image: string;
   imageAlt: string;
   objectPosition?: string;
-  atmosphere?: "sikh" | "buddhist" | "uae" | "pakistan" | "default";
+  atmosphere?: "sikh" | "buddhist" | "jain" | "uae" | "pakistan" | "default";
 }
 
 const atmosphereOverlay: Record<
@@ -21,6 +21,7 @@ const atmosphereOverlay: Record<
 > = {
   sikh: "collection-sikh-spread-overlay",
   buddhist: "collection-buddhist-spread-overlay",
+  jain: "collection-buddhist-spread-overlay",
   uae: "collection-uae-spread-overlay",
   pakistan: "collection-pakistan-spread-overlay",
   default: "destination-page-image-overlay",

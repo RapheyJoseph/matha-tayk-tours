@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 const atmospherePanelClass: Record<CollectionSummary["atmosphere"], string> = {
   sikh: "collection-home-sikh",
   buddhist: "collection-home-buddhist",
+  jain: "collection-home-jain",
   uae: "collection-home-uae",
   pakistan: "collection-home-pakistan",
 };
@@ -18,6 +19,7 @@ const atmospherePanelClass: Record<CollectionSummary["atmosphere"], string> = {
 const homepageImageFocus: Record<CollectionSummary["slug"], string> = {
   "sikh-heritage": "54% 44%",
   "buddhist-journeys": "center",
+  "jainism-heritage": "62% 42%",
   "pakistan-heritage": "48% 42%",
   "uae-luxury": "center",
 };
@@ -44,9 +46,11 @@ export function CollectionCinematicPanel({
   const isRight = align === "right";
   const isSikh = collection.slug === "sikh-heritage";
   const isBuddhist = collection.slug === "buddhist-journeys";
+  const isJain = collection.slug === "jainism-heritage";
   const isPakistan = collection.slug === "pakistan-heritage";
   const isUae = collection.slug === "uae-luxury";
-  const usePremiumHoverZoom = isSikh || isBuddhist || isPakistan || isUae;
+  const usePremiumHoverZoom =
+    isSikh || isBuddhist || isJain || isPakistan || isUae;
 
   return (
     <Link
@@ -114,6 +118,19 @@ export function CollectionCinematicPanel({
             {isRight ? (
               <div
                 className="collection-buddhist-home-text-veil pointer-events-none absolute inset-0 transition-opacity duration-700 ease-in-out group-hover/collection:opacity-[0.9]"
+                aria-hidden
+              />
+            ) : null}
+          </>
+        ) : isJain ? (
+          <>
+            <div
+              className="collection-jain-home-cinematic pointer-events-none absolute inset-0 transition-opacity duration-700 ease-in-out group-hover/collection:opacity-[0.82]"
+              aria-hidden
+            />
+            {!isRight ? (
+              <div
+                className="collection-jain-home-text-veil pointer-events-none absolute inset-0 transition-opacity duration-700 ease-in-out group-hover/collection:opacity-[0.9]"
                 aria-hidden
               />
             ) : null}

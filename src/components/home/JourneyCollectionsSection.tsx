@@ -13,6 +13,7 @@ const panelAlignments: CollectionPanelAlign[] = [
   "left",
   "right",
   "left",
+  "left",
   "right",
 ];
 

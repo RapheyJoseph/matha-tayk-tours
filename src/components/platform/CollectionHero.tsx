@@ -15,6 +15,7 @@ const atmosphereHeroOverlay: Record<
 > = {
   sikh: "collection-sikh-hero-gradient",
   buddhist: "collection-buddhist-hero-gradient",
+  jain: "collection-jain-hero-gradient",
   uae: "collection-uae-hero-gradient",
   pakistan: "collection-pakistan-hero-gradient",
 };

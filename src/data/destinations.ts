@@ -45,6 +45,7 @@ export interface DestinationPageData {
   collectionSlug:
     | "sikh-heritage"
     | "buddhist-journeys"
+    | "jainism-heritage"
     | "uae-luxury"
     | "pakistan-heritage";
   name: string;

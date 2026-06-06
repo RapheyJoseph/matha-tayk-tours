@@ -1765,6 +1765,58 @@
     );
   }
 
+  .collection-jain-hero-gradient {
+    background: linear-gradient(
+        180deg,
+        rgb(14 16 20 / 0.1) 0%,
+        rgb(10 12 16 / 0.28) 48%,
+        rgb(8 10 14 / 0.74) 100%
+      ),
+      linear-gradient(
+        115deg,
+        rgb(210 150 80 / 0.14) 0%,
+        transparent 42%
+      ),
+      linear-gradient(
+        90deg,
+        rgb(8 10 12 / 0.64) 0%,
+        rgb(10 12 14 / 0.4) 34%,
+        rgb(12 12 14 / 0.14) 60%,
+        rgb(12 12 12 / 0.05) 100%
+      );
+  }
+
+  .collection-home-jain {
+    background: linear-gradient(
+        110deg,
+        rgb(220 160 90 / 0.16) 0%,
+        transparent 42%
+      ),
+      linear-gradient(
+        180deg,
+        rgb(12 12 12 / 0.02) 0%,
+        rgb(8 10 12 / 0.28) 100%
+      );
+  }
+
+  .collection-jain-home-cinematic {
+    background: linear-gradient(
+      to right,
+      rgb(0 0 0 / 0.18) 0%,
+      rgb(0 0 0 / 0.1) 50%,
+      transparent 78%
+    );
+  }
+
+  .collection-jain-home-text-veil {
+    background: linear-gradient(
+      to right,
+      rgb(0 0 0 / 0.28) 0%,
+      rgb(0 0 0 / 0.14) 44%,
+      transparent 72%
+    );
+  }
+
   .collection-home-pakistan {
     background: linear-gradient(
         110deg,

@@ -10,6 +10,7 @@ import type { CollectionPageData } from "@/data/collections";
 const ctaOverlay: Record<CollectionPageData["atmosphere"], string> = {
   sikh: "collection-sikh-hero-gradient",
   buddhist: "collection-buddhist-hero-gradient",
+  jain: "collection-jain-hero-gradient",
   uae: "collection-uae-hero-gradient",
   pakistan: "autumn-departures-gradient",
 };

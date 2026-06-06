@@ -6,6 +6,7 @@ import {
 export const COLLECTION_SLUGS = [
   "sikh-heritage",
   "buddhist-journeys",
+  "jainism-heritage",
   "pakistan-heritage",
   "uae-luxury",
 ] as const;
@@ -14,13 +15,19 @@ export const COLLECTION_SLUGS = [
 export const HOMEPAGE_COLLECTION_ORDER = [
   "sikh-heritage",
   "buddhist-journeys",
+  "jainism-heritage",
   "pakistan-heritage",
   "uae-luxury",
 ] as const satisfies readonly CollectionSlug[];
 
 export type CollectionSlug = (typeof COLLECTION_SLUGS)[number];
 
-export type CollectionAtmosphere = "sikh" | "buddhist" | "uae" | "pakistan";
+export type CollectionAtmosphere =
+  | "sikh"
+  | "buddhist"
+  | "jain"
+  | "uae"
+  | "pakistan";
 
 export interface CuratedExperience {
   title: string;
@@ -32,12 +39,11 @@ export interface FeaturedDeparture {
   sectionEyebrow: string;
   sectionTitle: string;
   sectionLead: string;
-  fellowshipLabel: string;
-  eyebrow: string;
   title: string;
   dates: string;
   description: string;
-  details: string;
+  /** Optional inline phrase to render in <strong> within the description */
+  descriptionEmphasis?: string;
   ctaLabel: string;
   href: string;
   image: string;
@@ -110,15 +116,12 @@ const collectionPages: CollectionPageData[] = [
       sectionTitle: "Historic places connected to Guru Nanak",
       sectionLead:
         "Hidden and historic places connected to Guru Nanak Dev Ji. Experience sacred sites, local history, culture, and untold stories with knowledgeable guides while connecting with the spiritual journey and legacy of Guru Nanak Ji.",
-      fellowshipLabel: "By invitation · Limited fellowship of twelve",
-      eyebrow: "Autumn 2026",
-      title: "Kartarpur & Nankana in One Reverent Arc",
-      dates: "September 18 – September 26, 2026",
+      title: "Heritage Package",
+      dates: "September 18 – September 25, 2026",
       description:
-        "Cross the corridor with rested eyes, linger at Janam Asthan at dawn, and receive a private heritage manuscript viewing in Lahore—every threshold explained, every silence honoured.",
-      details:
-        "Two scholar guides · Priority corridor coordination · Private manuscript viewing",
-      ctaLabel: "Reserve Autumn Fellowship",
+        "Explore Pakistan's sacred Sikh heritage with guided visits to Lahore, Kartarpur, Nankana Sahib, Eminabad, Sialkot, and Islamabad. Highlights include Gurdwara Darbar Sahib Ji, Gurdwara Janam Asthaan, and Panja Sahib Hassan Abdal. Experience rich culture, spiritual landmarks, and local hospitality with daily vegetarian meals and 3–4-star accommodations. Includes professional Punjabi-speaking staff, private AC transport, and full itinerary-based site access. Ideal for groups of 20+ pilgrims seeking a meaningful darshan yatra at a cost of US$ 1999/person. Includes visa support, all entry fees, and twin-sharing lodging in Lahore & Islamabad.",
+      descriptionEmphasis: "US$ 1999/person",
+      ctaLabel: "Book Now",
       href: "/#contact",
       image: "/images/banners/autumn-departures-kartarpur-nankana.webp",
       imageAlt:
@@ -233,6 +236,67 @@ const collectionPages: CollectionPageData[] = [
       headline: "Compose your Gandhara arc",
       body:
         "Share your interests—archaeology, meditation, highland sanctuaries—and we will shape a private journey through Pakistan’s Buddhist heritage.",
+    },
+  },
+  {
+    slug: "jainism-heritage",
+    title: "Discover Jainism in Pakistan",
+    shortTitle: "Jain Heritage",
+    eyebrow: "Heritage collection",
+    atmosphere: "jain",
+    hero: {
+      headline: "Discover Jainism in Pakistan",
+      subheadline:
+        "Explore Pakistan's remarkable Jain heritage through ancient temples, sacred pilgrimage routes, intricate architecture, and centuries of spiritual tradition. From historic shrines to forgotten monuments, uncover the enduring legacy of Jain communities across the region.",
+      image: "/images/collections/jainism-heritage-hero.jpg",
+      imageAlt:
+        "Jain Temple Sirkap at golden hour—7th–8th century stone shrine with tiered shikhara, carved pavilion, and warm sunset light across the Taxila valley",
+      objectPosition: "62% 42%",
+    },
+    introduction: {
+      eyebrow: "Heritage collection",
+      title: "Temples, routes, and a living spiritual legacy",
+      paragraphs: [
+        "Explore Pakistan's remarkable Jain heritage through ancient temples, sacred pilgrimage routes, intricate architecture, and centuries of spiritual tradition. From historic shrines to forgotten monuments, uncover the enduring legacy of Jain communities across the region.",
+      ],
+    },
+    destinationSlugs: [],
+    experiences: [
+      {
+        title: "Temple & shrine immersions",
+        description:
+          "Historic Jain sites approached with scholarly context and unhurried time for reflection.",
+      },
+      {
+        title: "Pilgrimage route composition",
+        description:
+          "Sacred paths across the region, composed privately with local custodians and heritage guides.",
+      },
+      {
+        title: "Architectural heritage walks",
+        description:
+          "Intricate stone carving, courtyard geometry, and centuries of craft read as living scripture.",
+      },
+      {
+        title: "Manuscript & community hours",
+        description:
+          "Private conversations with historians and custodians of Jain material and oral heritage.",
+      },
+    ],
+    imageSpread: {
+      eyebrow: "Sacred stone",
+      caption:
+        "Temple courts, carved thresholds, and the patience of centuries—Pakistan's Jain past, composed as a luxury heritage journal.",
+      image: "/images/collections/jainism-heritage-hero.jpg",
+      imageAlt:
+        "Jain Temple Sirkap at golden hour—ancient stone temple and pavilion bathed in warm sunset light",
+      objectPosition: "62% 42%",
+    },
+    cta: {
+      eyebrow: "Walk the ancient way",
+      headline: "Compose your Jain heritage arc",
+      body:
+        "Share your interests—temples, pilgrimage routes, architectural history—and we will shape a private journey through Pakistan's Jain heritage.",
     },
   },
   {

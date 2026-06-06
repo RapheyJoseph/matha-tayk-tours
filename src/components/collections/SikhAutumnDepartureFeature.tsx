@@ -1,9 +1,9 @@
 "use client";
 
+import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SectionContainer } from "@/components/shared/SectionContainer";
 import { Reveal } from "@/components/shared/Reveal";
@@ -13,6 +13,24 @@ import { cn } from "@/lib/utils";
 
 interface SikhAutumnDepartureFeatureProps {
   departure: FeaturedDeparture;
+}
+
+function renderDescription(
+  description: string,
+  emphasis?: string,
+): ReactNode {
+  if (!emphasis) return description;
+
+  const index = description.indexOf(emphasis);
+  if (index === -1) return description;
+
+  return (
+    <>
+      {description.slice(0, index)}
+      <strong>{emphasis}</strong>
+      {description.slice(index + emphasis.length)}
+    </>
+  );
 }
 
 export function SikhAutumnDepartureFeature({
@@ -88,28 +106,17 @@ export function SikhAutumnDepartureFeature({
 
           <div className="relative z-[3] flex min-h-[inherit] flex-col justify-center px-6 py-10 sm:px-12 sm:py-14 lg:px-16 lg:py-16 xl:px-20">
             <div className="max-w-xl lg:max-w-2xl">
-              <div className="inline-flex items-center gap-2.5 rounded-full border border-brand-gold/40 bg-black/30 px-5 py-2.5 shadow-[0_8px_32px_rgba(0,0,0,0.22)] backdrop-blur-md">
-                <Sparkles
-                  className="size-3 text-brand-gold-soft"
-                  strokeWidth={1.5}
-                />
-                <span className="label-meta text-[10px] text-brand-gold-soft">
-                  {departure.fellowshipLabel}
-                </span>
-              </div>
-
-              <p className="eyebrow mt-8 text-brand-gold-soft sm:mt-9">{departure.eyebrow}</p>
-              <h3 className="mt-4 text-balance font-serif text-[1.75rem] leading-[1.07] tracking-[-0.025em] text-white sm:mt-5 sm:text-[2.45rem] lg:text-[2.75rem] lg:leading-[1.05]">
+              <h3 className="text-balance font-serif text-[1.75rem] leading-[1.07] tracking-[-0.025em] text-white sm:text-[2.45rem] lg:text-[2.75rem] lg:leading-[1.05]">
                 {departure.title}
               </h3>
               <p className="mt-5 font-serif text-lg tracking-[-0.01em] text-white/93 sm:mt-6 sm:text-xl">
                 {departure.dates}
               </p>
               <p className="mt-6 max-w-[44ch] text-base leading-[1.8] text-white/90 sm:mt-7 sm:text-[1.0625rem] sm:leading-[1.82]">
-                {departure.description}
-              </p>
-              <p className="label-meta mt-6 max-w-[40ch] text-[9px] leading-[1.7] tracking-[0.28em] text-white/70 sm:mt-7">
-                {departure.details}
+                {renderDescription(
+                  departure.description,
+                  departure.descriptionEmphasis,
+                )}
               </p>
 
               <motion.div
